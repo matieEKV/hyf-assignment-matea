@@ -38,3 +38,38 @@ console.log(
   "Is it true that the house Julia wants is overpriced? " +
     (actualHousePriceJulia > estimatedHousePriceJulia)
 );
+
+//Ez Namey (Startup name generator)
+
+const firstWords = [
+  "Super",
+  "Funky",
+  "Exquisite",
+  "Magical",
+  "Thorough",
+  "Adequate",
+  "Vivacious",
+  "Thunderous",
+  "Brazen",
+  "Ardent",
+];
+const secondWords = [
+  "Solutions",
+  "Problem-solvers",
+  "Sleuth",
+  "Remedies",
+  "Enterprise",
+  "Conglomerate",
+  "Disentangler",
+  "Genius",
+  "Analyzer",
+  "Decoder",
+];
+
+const randomNumber = Math.floor(Math.random() * 10);
+
+const startupName = firstWords[randomNumber] + " " + secondWords[randomNumber];
+
+console.log(
+  `The startup: ${startupName} contains ${startupName.length} characters`
+);
