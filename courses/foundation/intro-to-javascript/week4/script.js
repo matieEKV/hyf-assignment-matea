@@ -49,3 +49,34 @@ function getEventWeekday(daysFromNow) {
 }
 
 console.log(getEventWeekday(13));
+
+//---------------------------------------------------------
+
+//Weather wear
+
+function getClothesSuggestion(temperature) {
+  let clothes;
+  if (temperature < -30) {
+    clothes = "Clothes for the North Pole";
+  } else if (temperature < -30 && temperature < 0) {
+    clothes =
+      "Snow suit, thermo socks,thermo undergarment, hat, gloves and scarf";
+  } else if (temperature < 1 && temperature < 12) {
+    clothes =
+      "Thinner winter jacket, pants, long sleeved shirt. If windy wear hat and gloves.";
+  } else if (temperature < 13 && temperature < 20) {
+    clothes = "Long sleeved shirt, pants.";
+  } else if (temperature < 21 && temperature < 30) {
+    clothes = "Light breathable clothes - t-shirt, shorts.";
+  } else if (temperature < 31 && temperature < 40) {
+    clothes =
+      "Long sleeved shirt, light pants to protect against UV. If evening wear a dress.";
+  } else {
+    clothes = "Special clothes that will protect against very high UV index";
+  }
+
+  return clothes;
+}
+
+const clothesToWear = getClothesSuggestion(45);
+console.log(clothesToWear);
