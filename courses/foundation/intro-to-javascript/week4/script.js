@@ -84,3 +84,40 @@ function getClothesSuggestion(temperature) {
 const clothesToWear = getClothesSuggestion(45);
 
 console.log(clothesToWear);
+
+//---------------------------------------------------------
+
+//Student Manager
+
+const class07Students = [];
+function addStudentToClass(studentName) {
+  let isFound = class07Students.includes(studentName);
+  if (
+    (class07Students.length < 6 && !isFound && studentName != "") ||
+    studentName === "Queen"
+  ) {
+    class07Students.push(studentName);
+  }
+}
+const studentApplicants = [
+  "Kate",
+  "Jane",
+  "",
+  "Tom",
+  "Jane",
+  "Lucy",
+  "Oscar",
+  "Peter",
+  "Tina",
+  "Queen",
+];
+for (let i = 0; i < studentApplicants.length; i++) {
+  addStudentToClass(studentApplicants[i]);
+}
+
+console.log(class07Students);
+console.log(getNumberOfStudents());
+
+function getNumberOfStudents() {
+  return class07Students.length;
+}
