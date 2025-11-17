@@ -91,11 +91,16 @@ console.log(clothesToWear);
 
 const class07Students = [];
 function addStudentToClass(studentName) {
-  let isFound = class07Students.includes(studentName);
-  if (
-    (class07Students.length < 6 && !isFound && studentName != "") ||
-    studentName === "Queen"
-  ) {
+  const isFound = class07Students.includes(studentName);
+  const hasSpace = class07Students.length < 6;
+
+  if (isFound) {
+    return;
+  }
+  if (studentName == "") {
+    return;
+  }
+  if (hasSpace || studentName === "Queen") {
     class07Students.push(studentName);
   }
 }
@@ -110,7 +115,10 @@ const studentApplicants = [
   "Peter",
   "Tina",
   "Queen",
+  "Queen",
+  "Lin",
 ];
+
 for (let i = 0; i < studentApplicants.length; i++) {
   addStudentToClass(studentApplicants[i]);
 }
@@ -121,3 +129,50 @@ console.log(getNumberOfStudents());
 function getNumberOfStudents() {
   return class07Students.length;
 }
+
+//---------------------------------------------------------
+
+// Candy helper
+let boughtCandyPrices = [];
+
+function addCandy(candyType, weight) {
+  const normalizedCandy = candyType.toLowerCase();
+
+  if (normalizedCandy === "sweet") {
+    boughtCandyPrices.push(0.5 * weight);
+  } else if (normalizedCandy === "chocolate") {
+    boughtCandyPrices.push(0.7 * weight);
+  } else if (normalizedCandy === "toffee") {
+    boughtCandyPrices.push(1.1 * weight);
+  } else if (normalizedCandy === "chewing-gum") {
+    boughtCandyPrices.push(0.03 * weight);
+  }
+}
+
+addCandy("sweet", 20);
+addCandy("toffee", 30);
+addCandy("Chocolate", 4);
+addCandy("chewing-gum", 16);
+
+const amountToSpend = Math.random() * 100;
+
+function canBuyMoreCandy() {
+  let i = 0;
+  let total = 0;
+
+  while (i < boughtCandyPrices.length - 1) {
+    total += boughtCandyPrices[i];
+    i++;
+  }
+  return amountToSpend - total > 0;
+}
+
+console.log(
+  canBuyMoreCandy()
+    ? "You can buy more, so please do!"
+    : "Enough candy for you!"
+);
+
+/*thoughts for improvement :
+- use an array of objects to store candies and price and map over them
+- limit how many candies can be added to the array based on the amount of money to spend*/
