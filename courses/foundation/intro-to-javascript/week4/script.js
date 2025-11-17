@@ -176,3 +176,30 @@ console.log(
 /*thoughts for improvement :
 - use an array of objects to store candies and price and map over them
 - limit how many candies can be added to the array based on the amount of money to spend*/
+
+//---------------------------------------------------------
+
+// Exercise 3-b Count by sound(from the session)
+
+const friendNames = [
+  "Chris",
+  "Anne",
+  "Colin",
+  "Terri",
+  "Phil",
+  "Lola",
+  "Sam",
+  "Kay",
+  "Bruce",
+];
+let counter = 0;
+
+for (let name in friendNames) {
+  if (friendNames[name].toLowerCase().includes("a")) {
+    counter++;
+  } else {
+    console.log(friendNames[name]);
+  }
+}
+
+console.log(counter);
