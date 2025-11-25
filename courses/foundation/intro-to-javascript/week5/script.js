@@ -152,3 +152,90 @@ function removeNote(id) {
 removeNote(2);
 console.log(completedNotes);
 console.log(notes);
+//Exercise 4 - CactusIO-interactive (Smart phone usage app)
+
+let activities = [];
+
+//4.1 - add the activity to array
+function addActivity(activity, duration) {
+  let singleActivity = {};
+  let today = new Date();
+  singleActivity["date"] = today.toLocaleDateString("en-GB");
+  singleActivity["activity"] = activity;
+  singleActivity["duration"] = duration;
+  activities.push(singleActivity);
+}
+
+addActivity("Youtube", 30);
+addActivity("Facebook", 40);
+addActivity("Linkedin", 40);
+console.log(activities);
+
+//4.2 - show how many activities added so far and usage in minutes
+//4.3 - show if limit reached. If yes error, if no warning of time remaining
+const limitMinutes = 92;
+function showStatus(activities, date, limit) {
+  const activitiesForDate = activities.filter(
+    //filter for the activities that match the date
+    (activity) => activity.date == date
+  );
+  const length = activitiesForDate.length;
+  let sumOfActivities = 0;
+  if (length === 0) {
+    console.log("Add some activities before calling showStatus");
+    return;
+  } else {
+    for (const activity of activities) {
+      if (activity.date === date) {
+        sumOfActivities += activity.duration;
+      }
+    }
+    console.log(
+      `You have added ${length} activities. They amount to ${sumOfActivities} min. of usage`
+    );
+    checkIfLimitReached(limit, sumOfActivities);
+  }
+}
+
+function checkIfLimitReached(limit, usage) {
+  if (limit < usage) {
+    const timeLeft = usage - limit;
+    console.warn(
+      `You still have ${timeLeft} minutes left for smartphoning today`
+    );
+  } else {
+    console.error("You have reached your limit, no more smartphoning for you!");
+  }
+}
+
+function findMostUsed(activities) {
+  //1. sort the activity based of duration, it will be sorted in ascending order
+  activities.sort((a, b) => a.duration - b.duration);
+  //last item in array is the longest
+  const lastActivity = activities[activities.length - 1];
+  //2. filter the data to check if more activities used equally long
+  const mostUsedData = activities.filter(
+    (activity) => lastActivity.duration === activity.duration
+  );
+  console.log(mostUsedData);
+
+  //check if some activities are used equally long
+  let mostUsedActivities = [];
+  if (mostUsedData.length > 1) {
+    for (const mostUsedActivity of mostUsedData) {
+      mostUsedActivities.push(mostUsedActivity.activity);
+    }
+    console.log(
+      "These activities were used the most and equally long: " +
+        mostUsedActivities
+    );
+    //if just one activity used longest
+  } else {
+    console.log(
+      "This is the most used activity today: " + mostUsedData[0].activity
+    );
+  }
+}
+
+showStatus(activities, "25/11/2025", limitMinutes);
+findMostUsed(activities);
