@@ -12,7 +12,7 @@ const names = [
 ];
 const nameToRemove = "Ahmad";
 let index = 0;
-for (let name of names) {
+for (const name of names) {
   if (name === nameToRemove) {
     index = names.indexOf(name);
     names.splice(index, 1);
@@ -154,12 +154,12 @@ console.log(completedNotes);
 console.log(notes);
 //Exercise 4 - CactusIO-interactive (Smart phone usage app)
 
-let activities = [];
+const activities = [];
 
 //4.1 - add the activity to array
 function addActivity(activity, duration) {
-  let singleActivity = {};
-  let today = new Date();
+  const singleActivity = {};
+  const today = new Date();
   singleActivity["date"] = today.toLocaleDateString("en-GB");
   singleActivity["activity"] = activity;
   singleActivity["duration"] = duration;
