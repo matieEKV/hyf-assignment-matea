@@ -81,7 +81,7 @@ function calculateTimeTakenFromLife(tvShows) {
   const averageLifeExpectancyDays = 80 * 365;
   let sum = 0;
   let percentOfShow = 0;
-  for (let show of tvShows) {
+  for (const show of tvShows) {
     percentOfShow =
       ((show.hours / 24 + show.days) / averageLifeExpectancyDays) * 100;
     console.log(`${show.title} took ${percentOfShow.toFixed(4)}% of my life`);
@@ -89,5 +89,66 @@ function calculateTimeTakenFromLife(tvShows) {
   }
   console.log(`That is ${sum.toFixed(4)}% of my life`);
 }
-//addition - should also add another property for how many times have we watched the show :D
+
 calculateTimeTakenFromLife(seriesDurations);
+
+//addition - should also add another property for how many times have we watched the show :D
+//Exercise 3 - Smart-Ease - Back to basics
+
+const notes = [];
+
+// 3.1 - Save notes
+function saveNote(content, id) {
+  const note = {};
+  note["content"] = content;
+  note["id"] = id;
+  notes.push(note);
+}
+
+saveNote("Pick up groceries", 1);
+saveNote("Do laundry", 2);
+
+console.log(notes);
+
+//3.2 -  get a note
+function getNote(id) {
+  for (const note of notes) {
+    if (note.id === id) {
+      return note;
+    }
+  }
+}
+
+const firstNote = getNote(0);
+firstNote === undefined
+  ? console.error("Invalid ID number")
+  : console.log(firstNote);
+
+//3.3 - print all notes
+function logOutNotesFormatted() {
+  for (const note of notes) {
+    console.log(
+      `The note with id: ${note.id}, has the following note text: ${note.content}`
+    );
+  }
+}
+
+logOutNotesFormatted();
+
+//3.4 - Unique feature
+
+//remove a note and store it in completed notes array
+let completedNotes = [];
+function removeNote(id) {
+  for (const note of notes) {
+    if (note.id === id) {
+      const index = notes.indexOf(note);
+      const removedNote = notes.splice(index, 1)[0]; //splice returns an array, so telling it to return an item at index 0 of that array;
+      completedNotes.push(removedNote);
+    }
+  }
+}
+
+removeNote(2);
+console.log(completedNotes);
+console.log(notes);
