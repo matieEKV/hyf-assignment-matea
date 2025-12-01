@@ -10,16 +10,12 @@ const names = [
   "Katrine",
   "Tala",
 ];
-const nameToRemove = "Ahmad";
-let index = 0;
-for (const name of names) {
-  if (name === nameToRemove) {
-    index = names.indexOf(name);
-    names.splice(index, 1);
-  }
-}
 
-// Code done
+const nameToRemove = "Ahmad";
+const indexToRemove = names.indexOf(nameToRemove);
+if (indexToRemove !== -1) {
+  names.splice(indexToRemove, 1);
+}
 
 console.log(names); // ['Peter', 'Yana', 'kristina', 'Rasmus', 'Samuel', 'Katrine', 'Tala']
 //Exercise 1 - given speed and distance, write a function which returns the time it will take to arrive at your destination.
@@ -36,9 +32,7 @@ function calculateTimeOfTravel(travelInfo) {
   let minutes = 0;
   const remainder = distance % speed;
 
-  if (remainder > 0) {
-    minutes = Math.floor((remainder * 60) / speed);
-  }
+  minutes = Math.floor((remainder * 60) / speed);
 
   return minutes != 1
     ? `${hours} hours and ${minutes} minutes`
@@ -83,7 +77,9 @@ function calculateTimeTakenFromLife(tvShows) {
   let percentOfShow = 0;
   for (const show of tvShows) {
     percentOfShow =
-      ((show.hours / 24 + show.days) / averageLifeExpectancyDays) * 100;
+      ((show.days + show.hours / 24 + show.minutes / 1440) /
+        averageLifeExpectancyDays) *
+      100;
     console.log(`${show.title} took ${percentOfShow.toFixed(4)}% of my life`);
     sum += percentOfShow;
   }
@@ -99,10 +95,13 @@ const notes = [];
 
 // 3.1 - Save notes
 function saveNote(content, id) {
-  const note = {};
-  note["content"] = content;
-  note["id"] = id;
-  notes.push(note);
+  // const note = {};
+  // note["content"] = content;
+  // note["id"] = id;
+  if (content.trim() !== "" && id != null) {
+    //avoids adding invalid notes
+    notes.push({ content, id });
+  }
 }
 
 saveNote("Pick up groceries", 1);
@@ -115,14 +114,14 @@ function getNote(id) {
   for (const note of notes) {
     if (note.id === id) {
       return note;
+    } else {
+      console.error("Invalid ID number");
     }
   }
 }
 
 const firstNote = getNote(0);
-firstNote === undefined
-  ? console.error("Invalid ID number")
-  : console.log(firstNote);
+console.log(firstNote);
 
 //3.3 - print all notes
 function logOutNotesFormatted() {
@@ -158,12 +157,18 @@ const activities = [];
 
 //4.1 - add the activity to array
 function addActivity(activity, duration) {
-  const singleActivity = {};
-  const today = new Date();
-  singleActivity["date"] = today.toLocaleDateString("en-GB");
-  singleActivity["activity"] = activity;
-  singleActivity["duration"] = duration;
-  activities.push(singleActivity);
+  // const singleActivity = {};
+  // const today = new Date();
+  // singleActivity["date"] = today.toLocaleDateString("en-GB");
+  // singleActivity["activity"] = activity;
+  // singleActivity["duration"] = duration;
+  // activities.push(singleActivity);
+  const singleActivity = {
+    date: new Date().toLocaleDateString("en-GB"),
+    activity,
+    duration,
+  };
+  activities.push(singleActivity); //use ES6 shorthand object instead
 }
 
 addActivity("Youtube", 30);
@@ -198,7 +203,7 @@ function showStatus(activities, date, limit) {
 }
 
 function checkIfLimitReached(limit, usage) {
-  if (limit < usage) {
+  if (limit > usage) {
     const timeLeft = usage - limit;
     console.warn(
       `You still have ${timeLeft} minutes left for smartphoning today`
@@ -239,3 +244,19 @@ function findMostUsed(activities) {
 
 showStatus(activities, "25/11/2025", limitMinutes);
 findMostUsed(activities);
+
+function match(candidate, job) {
+  // is this job a valid match for the candidate?
+  let isAMatch = false;
+  if (!candidate || !job) {
+    console.error("This parametar has to be provided!");
+    return;
+  }
+  if (candidate * 0.9 <= job || candidate <= job) {
+    isAMatch = true;
+  }
+  return isAMatch;
+}
+
+console.log(match(120000, 108000));
+console.log(match(120000, 80000));
