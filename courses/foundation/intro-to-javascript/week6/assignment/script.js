@@ -135,3 +135,131 @@ console.log(getReply("What is on my todo?")); //You have 1 todo - cooking
 console.log(getReply("Set timer for 1 minute")); //Timer set for 1 minute --- Timer done! (after 1 min)
 console.log(getReply("What is the weather today?")); //random (It is 5 degrees today and raining. Wear warm waterproof clothes)
 console.log(getReply("How old am I")); //Please use a valid command
+
+//-----CLASS EXERCISES -----//
+
+/*Exercise 0 - FizzBuzz (replace numbers - 
+divisible by 3 with Fizz, divisible by 5 with Buzz, and divisible by both with FizzBuzz)*/
+
+function fizzBuzz(number1, number2) {
+  for (let i = number1; i <= number2; i++) {
+    let fizz = i % 3;
+    let buzz = i % 5;
+    if (fizz == 0 && buzz == 0) {
+      console.log("FizzBuzz");
+    } else if (buzz == 0) {
+      console.log("Buzz");
+    } else if (fizz == 0) {
+      console.log("Fizz");
+    } else {
+      console.log(i);
+    }
+  }
+}
+
+fizzBuzz(4, 17); //4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17
+
+//Exercise 1 - get sentiment score from a sentence
+
+function getSentimentScore(sentence) {
+  const positiveAdjectives = [
+    "great",
+    "happy",
+    "awesome",
+    "amazing",
+    "super",
+    "wonderful",
+    "thrilled",
+    "ecstatic",
+  ];
+  const negativeAdjectives = [
+    "terrible",
+    "sad",
+    "boring",
+    "horrible",
+    "dull",
+    "annoying",
+    "bad",
+  ];
+  const words = sentence.split(" ");
+  const positiveWords = [];
+  const negativeWords = [];
+
+  for (const word of words) {
+    if (
+      !negativeAdjectives.includes(word) &&
+      !positiveAdjectives.includes(word)
+    ) {
+      continue;
+    } else if (negativeAdjectives.includes(word)) {
+      negativeWords.push(word);
+    } else {
+      positiveWords.push(word);
+    }
+  }
+  return {
+    score: positiveWords.length + negativeWords.length,
+    positiveWords,
+    negativeWords,
+  };
+}
+const sentimentScoreObject = getSentimentScore(
+  "I am mega super awesome terrible happy"
+);
+
+console.log(sentimentScoreObject); //{score: 4, positiveWords: [ 'super', 'awesome', 'happy' ], negativeWords: [ 'terrible' ]}
+
+//Exercise 2 - format credit card number to include spaces between 4 numbers
+
+function formatCreditCardNumber(creditCardNumber) {
+  const convertedToString = creditCardNumber.toString();
+  let formatted = "";
+
+  for (let i = 0; i < convertedToString.length; i += 4) {
+    const addFour = i + 4;
+    let str1 = convertedToString.slice(i, addFour);
+    if (addFour === convertedToString.length || str1.length < 4) {
+      //prevents adding an extra space at the end
+      formatted += str1;
+    } else {
+      formatted += str1 + " ";
+    }
+  }
+  return {
+    original: creditCardNumber,
+    formatted: formatted,
+  };
+}
+
+const formattedCreditCardObject = formatCreditCardNumber(1234567890123);
+console.log(formattedCreditCardObject); //{ original: 123456789, formatted: "1234 5678 9"}
+
+//Exercise 3 - Write a function that counts the frequency of characters in a string:
+
+function getCharacterFrequencies(word) {
+  const arrayOfWord = word.split("");
+  //long way
+
+  const charCount = [];
+  for (const char of arrayOfWord) {
+    const foundChar = charCount.find((element) => element.character === char);
+    if (foundChar) {
+      foundChar.count++;
+    } else {
+      charCount.push({ character: char, count: 1 });
+    }
+  }
+  return charCount;
+
+  //short way using reduce method
+  return arrayOfWord.reduce(function (accumulator, currentChar) {
+    if (accumulator[currentChar]) {
+      accumulator[currentChar]++;
+    } else {
+      accumulator[currentChar] = 1;
+    }
+    return accumulator;
+  }, {});
+}
+
+console.log(getCharacterFrequencies("happy")); // { character: 'h', count: 1 }, { character: 'a', count: 1 }, { character: 'p', count: 2 }, { character: 'y', count: 1 }
