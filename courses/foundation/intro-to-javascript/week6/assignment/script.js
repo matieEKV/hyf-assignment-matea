@@ -5,32 +5,46 @@ const userData = {
 };
 
 function getReply(command) {
+  if (typeof command !== "string") {
+    return;
+  }
+  const askName = (command) => command.startsWith("Hello my name is ");
+  const giveName = (command) => command === "What is my name";
+  const newToDo = (command) => command.startsWith("Add ");
+  const deleteToDo = (command) => command.startsWith("Remove ");
+  const giveToDos = (command) => command === "What is on my todo?";
+  const giveDate = (command) => command === "What day is it today?";
+  const isMathQuestion = (command) =>
+    /What is (\d+)\s*([+\-*/])\s*(\d+)/i.test(command);
+  const askTimer = (command) => command.startsWith("Set timer for");
+  const askWeather = (command) => command === "What is the weather today?";
+
   switch (true) {
-    case command.startsWith("Hello my name is"):
+    case askName(command):
       return setName(command);
 
-    case command === "What is my name":
+    case giveName(command):
       return getName();
 
-    case command.startsWith("Add "):
+    case newToDo(command):
       return addToDo(command);
 
-    case command.startsWith("Remove"):
+    case deleteToDo(command):
       return removeToDo(command);
 
-    case command === "What is on my todo?":
+    case giveToDos(command):
       return getToDos();
 
-    case command === "What day is it today?":
+    case giveDate(command):
       return getDate();
 
-    case /What is (\d+)\s*([+\-*/])\s*(\d+)/i.test(command):
+    case isMathQuestion(command):
       return calculate(command);
 
-    case command.startsWith("Set timer for"):
+    case askTimer(command):
       return setTimer(command);
 
-    case command === "What is the weather today?":
+    case askWeather(command):
       return checkWeather();
 
     default:
@@ -39,11 +53,12 @@ function getReply(command) {
 }
 
 function setName(command) {
-  const length = command.split(" ").length;
-  if (length <= 4 || length > 5) {
+  const userName = command.replace("Hello my name is ", "");
+
+  if (userName < 1) {
     return "Please input valid name";
   } else {
-    userData.name = command.split(" ").pop();
+    userData.name = userName;
     return `Nice to meet you ${userData.name}`;
   }
 }
@@ -91,17 +106,33 @@ function getDate() {
 }
 
 function calculate(command) {
-  const stringOperation = command.replace("What is ", "");
+  const arrayOperation = command.replace("What is ", "").split(" "); //remove the words and spaces from the command
+  const number1 = parseInt(arrayOperation[0]);
+  const number2 = parseInt(arrayOperation[2]);
 
-  return eval(
-    stringOperation
-  ); /* I am aware of the security risk associated with this method, 
-                                However I hope it is okay for our example here because I had a
-                                 hard time finding out a better approach*/
+  const arithmeticOperators = ["+", "-", "/", "*"];
+
+  let indexOperator = arithmeticOperators.indexOf(arrayOperation[1]);
+
+  switch (indexOperator) {
+    case 0:
+      return number1 + number2;
+    case 1:
+      return number1 - number2;
+    case 2:
+      return number1 / number2;
+    case 3:
+      return number1 * number2;
+    default:
+      return "Please use numbers and valid arithmetic operators";
+  }
 }
 
 function setTimer(command) {
-  const minutes = command.split(" ").filter(Number);
+  const minutes = parseInt(command.match(/[0-9]+/));
+  if (!minutes) {
+    return "Cannot set timer without number of minutes";
+  }
   const message = `Timer set for ${minutes} minute${minutes > 1 ? "s" : ""}`;
 
   const milliseconds = minutes * 60000;
@@ -124,12 +155,12 @@ function checkWeather() {
   return weather[Math.floor(Math.random() * weather.length)];
 }
 
-console.log(getReply("Hello my name is Matea")); //Nice to meet you Matea
+console.log(getReply("Hello my name is Matea Lucija ")); //Nice to meet you Matea
 console.log(getReply("What is my name")); //Matea
 console.log(getReply("Add shopping to my todo")); //Added shopping to a list of todos
 console.log(getReply("Add cooking to my todo")); //Added cooking to a list of todos
 console.log(getReply("What day is it today?")); // Tuesday, 2 December 2025
-console.log(getReply("What is 6 + 5")); // 11
+console.log(getReply("What is 10 + 1")); // 11
 console.log(getReply("Remove shopping from my todo")); //Removed shopping from your todo list
 console.log(getReply("What is on my todo?")); //You have 1 todo - cooking
 console.log(getReply("Set timer for 1 minute")); //Timer set for 1 minute --- Timer done! (after 1 min)
