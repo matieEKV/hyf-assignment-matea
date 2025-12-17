@@ -23,34 +23,20 @@ function getEventWeekday(daysFromNow) {
   const date = new Date();
   let eventDayNumber = (date.getDay() + daysFromNow) % 7; //make sure to wrap the count to 0 after 7 days
 
-  let eventDay = "";
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
-  switch (eventDayNumber) {
-    case 0:
-      eventDay = "Sunday";
-      break;
-    case 1:
-      eventDay = "Monday";
-      break;
-    case 2:
-      eventDay = "Tuesday";
-      break;
-    case 3:
-      eventDay = "Wednesday";
-      break;
-    case 4:
-      eventDay = "Thursday";
-      break;
-    case 5:
-      eventDay = "Friday";
-      break;
-    default:
-      eventDay = "Saturday";
-  }
-  return eventDay;
+  return daysOfWeek[eventDayNumber];
 }
 
-console.log(getEventWeekday(13));
+console.log(getEventWeekday(9));
 
 //---------------------------------------------------------
 
@@ -61,7 +47,7 @@ function getClothesSuggestion(temperature) {
 
   if (temperature < -30) {
     clothes = "Clothes for the North Pole";
-  } else if (temperature < -30 && temperature < 0) {
+  } else if (temperature > -30 && temperature < 0) {
     clothes =
       "Snow suit, thermo socks,thermo undergarment, hat, gloves and scarf";
   } else if (temperature < 1 && temperature < 12) {
@@ -81,7 +67,7 @@ function getClothesSuggestion(temperature) {
   return clothes;
 }
 
-const clothesToWear = getClothesSuggestion(45);
+const clothesToWear = getClothesSuggestion(-10);
 
 console.log(clothesToWear);
 
