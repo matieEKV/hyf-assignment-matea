@@ -32,6 +32,53 @@ app.get("/all-emails", async (req, res) => {
   res.json(rows);
 });
 
+//1. /unconfirmed-users should respond with unconfirmed users
+app.get("/unconfirmed-users", async (req, res) => {
+  const rows = await knexInstance.raw(
+    "SELECT * FROM users WHERE confirmed_at IS NULL;"
+  );
+  res.json(rows);
+});
+
+//2. /gmail-users should respond with users with an @gmail.com email
+app.get("/gmail-users", async (req, res) => {
+  const rows = await knexInstance.raw(
+    "SELECT * FROM users WHERE email LIKE '%gmail%';"
+  );
+  res.json(rows);
+});
+
+//3. /2022-users should respond with users created in 2022
+app.get("/2022-users", async (req, res) => {
+  const rows = await knexInstance.raw(
+    "SELECT * FROM users WHERE created_at LIKE '%2022%';"
+  );
+  res.json(rows);
+});
+
+//4. /last-name-count should respond with how many users there are with a given last name, sorted alphabetically
+app.get("/last-name-count", async (req, res) => {
+  const rows = await knexInstance.raw(
+    "SELECT first_name, last_name FROM users WHERE last_name IS NOT NULL ORDER BY last_name asc;"
+  );
+  const count = await knexInstance.raw(
+    "SELECT COUNT(*) FROM users WHERE last_name IS NOT NULL;"
+  );
+  const countAndLastNames = [rows, count];
+  res.json(countAndLastNames);
+});
+
+//5. /first-user should respond with the first user. If there are no users in the table, respond with a 404
+app.get("/first-user", async (req, res) => {
+  const firstUser = await knexInstance.raw(
+    "SELECT first_name FROM users  WHERE id==1;"
+  );
+  if (!firstUser) {
+    return res.sendStatus(400);
+  }
+  res.json(firstUser);
+});
+
 //return all first and last names from users
 app.get("/all-names", async (req, res) => {
   const rows = await knexInstance.raw(
