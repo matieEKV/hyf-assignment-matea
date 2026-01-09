@@ -14,9 +14,39 @@ const knexInstance = knex({
 });
 
 app.use(express.json());
-
+//updated route to return html with the user count
 app.get("/", (req, res) => {
-  res.send("Hello from exercise 2!");
+  // res.send("Hello from exercise 2!");
+  res.send(
+    `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Count</title>
+        <body>
+          <div style="text-align: center; border: 5px solid purple; margin-top: 10%;"><p style="font-weight: bold; font-size: 2rem;"><em>Your database contains:</em></p>
+            <p class="countDisplay" style="font-size: 5rem; color: green; font-weight: bold;"></p>
+            <p style="font-size: 4rem; color: green; font-weight: bold;">Users</p>
+          </div>
+
+          <script>
+            let countDisplay = document.querySelector('.countDisplay');
+            function fetchQuote() {  
+            fetch("/user-count")
+            .then(data => data.json()) 
+            .then(data => {
+                countDisplay.innerText = data;
+                console.log(data);
+            })
+            .catch((error) => {
+              console.log("Could not fetch data", error)
+});
+}
+        fetchQuote();
+    </script>
+        </body>
+        </html>`
+  );
 });
 
 // Here is an example of the first route, /all-users, which returns all users sorted by their ID
@@ -86,27 +116,15 @@ app.get("/all-names", async (req, res) => {
 //return all users which have emails on yahoo
 app.get("/yahoo-emails", async (req, res) => {
   const rows = await knexInstance.raw(
-    "SELECT * FROM users WHERE email LIKE '%yahoo%';"
+    "SELECT * FROM users WHERE email LIKE '%@yahoo%';"
   );
   res.json(rows);
 });
 
-//return styled html as response for user count
+//return user count
 app.get("/user-count", async (req, res) => {
   const rows = await knexInstance.raw("SELECT COUNT(*) as total FROM users;");
-  // res.json(rows[0].total);
-  res.send(
-    `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>User Count</title>
-        <body>
-        <div style="text-align: center; border: 5px solid purple; margin-top: 10%;"><p style="font-weight: bold; font-size: 2rem;"><em>Your database contains:</em></p>
-        <p style="font-size: 5rem; color: green; font-weight: bold;">${rows[0].total} users </p></div>
-        </body>
-        </html>`
-  );
+  res.json(rows[0].total);
 });
 
 //add new user through postman
