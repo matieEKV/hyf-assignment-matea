@@ -43,7 +43,7 @@ app.get("/unconfirmed-users", async (req, res) => {
 //2. /gmail-users should respond with users with an @gmail.com email
 app.get("/gmail-users", async (req, res) => {
   const rows = await knexInstance.raw(
-    "SELECT * FROM users WHERE email LIKE '%gmail%';"
+    "SELECT * FROM users WHERE email LIKE '%@gmail%';"
   );
   res.json(rows);
 });
@@ -59,22 +59,18 @@ app.get("/2022-users", async (req, res) => {
 //4. /last-name-count should respond with how many users there are with a given last name, sorted alphabetically
 app.get("/last-name-count", async (req, res) => {
   const rows = await knexInstance.raw(
-    "SELECT first_name, last_name FROM users WHERE last_name IS NOT NULL ORDER BY last_name asc;"
+    "SELECT last_name, COUNT(*) AS total FROM users WHERE last_name IS NOT NULL GROUP BY last_name ORDER BY last_name ASC;"
   );
-  const count = await knexInstance.raw(
-    "SELECT COUNT(*) FROM users WHERE last_name IS NOT NULL;"
-  );
-  const countAndLastNames = [rows, count];
-  res.json(countAndLastNames);
+  res.json(rows);
 });
 
 //5. /first-user should respond with the first user. If there are no users in the table, respond with a 404
 app.get("/first-user", async (req, res) => {
   const firstUser = await knexInstance.raw(
-    "SELECT first_name FROM users  WHERE id==1;"
+    "SELECT * FROM users ORDER BY id LIMIT 1;"
   );
   if (!firstUser) {
-    return res.sendStatus(400);
+    return res.sendStatus(404);
   }
   res.json(firstUser);
 });
@@ -100,7 +96,16 @@ app.get("/user-count", async (req, res) => {
   const rows = await knexInstance.raw("SELECT COUNT(*) as total FROM users;");
   // res.json(rows[0].total);
   res.send(
-    `<div style="text-align: center; border: 5px solid purple; margin-top: 10%;"><p style="font-weight: bold; font-size: 2rem;"><em>Your database contains:</em></p><p style="font-size: 5rem; color: green; font-weight: bold;">${rows[0].total} users </p></div>`
+    `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Count</title>
+        <body>
+        <div style="text-align: center; border: 5px solid purple; margin-top: 10%;"><p style="font-weight: bold; font-size: 2rem;"><em>Your database contains:</em></p>
+        <p style="font-size: 5rem; color: green; font-weight: bold;">${rows[0].total} users </p></div>
+        </body>
+        </html>`
   );
 });
 
