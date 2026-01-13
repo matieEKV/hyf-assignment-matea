@@ -6,6 +6,7 @@ const bubble3 = document.querySelector(".top-right");
 const bubble4 = document.querySelector(".bottom-right");
 const bubbleHolder = document.querySelectorAll(".bubbleHolder");
 const hat = document.querySelector(".hat");
+const images = document.querySelectorAll(".image-container");
 
 let counter = 0;
 let bubbleCounter = 0;
@@ -72,11 +73,14 @@ function activateHat() {
   }
 }
 
+function createEl(element) {
+  return document.createElement(element);
+}
 function createInputElement() {
   introBubble.innerHTML = "What is your name, Wizard?";
   if (!document.querySelector("#wizard-name")) {
-    const input = document.createElement("input");
-    const button = document.createElement("button");
+    const input = createEl("input");
+    const button = createEl("button");
     introBubbleContainer.appendChild(input);
     introBubbleContainer.appendChild(button);
     input.type = "text";
@@ -122,12 +126,14 @@ function performSorting() {
   introBubble.innerHTML = `${wizardName} belongs to ${house.name}!!`;
   //check for p element, if not there create a new one
   if (!document.querySelector("#direction")) {
-    const direction = document.createElement("p");
+    const direction = createEl("p");
     direction.id = "direction";
     introBubbleContainer.appendChild(direction);
     direction.innerHTML = "Click on the Sorting Hat for another chance";
   }
-  document.body.style.backgroundImage = "url(" + house.logo + ")";
+  images.forEach((image) => {
+    image.style.backgroundImage = "url(" + house.logo + ")";
+  });
 }
 
 function decideHouse() {
@@ -155,6 +161,18 @@ function decideHouse() {
     index = Math.floor(Math.random() * houses.length);
   }
   oldHouse = houses[index].name;
-  console.log(houses[index].name);
   return houses[index];
+}
+
+//function to pause/play the background music
+function play() {
+  const audio = document.querySelector("audio");
+  const pauseButton = document.querySelector(".pause");
+  if (audio.paused) {
+    audio.play();
+    pauseButton.style.background = "white";
+  } else {
+    audio.pause();
+    pauseButton.style.background = "grey";
+  }
 }
