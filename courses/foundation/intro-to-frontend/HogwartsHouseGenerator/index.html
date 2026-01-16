@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hogwarts House Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="introBubbleContainer">
+      <p class="introBubble">
+        Welcome to your first year in Hogwarts School of Witchcraft and
+        Wizardry!!
+      </p>
+    </div>
+    <img
+      class="hat"
+      src="Sorting_Hat.webp"
+      alt="A sorting hat from Harry Potter - long brown"
+    />
+    <div class="main-container">
+      <div class="image-container"></div>
+      <div class="image-container"></div>
+    </div>
+    <div class="bubbleHolder top-left">
+      <p class="bubble top-left">Nitwit!</p>
+    </div>
+    <div class="bubbleHolder bottom-left">
+      <p class="bubble bottom-left">Blubber!</p>
+    </div>
+    <div class="bubbleHolder top-right">
+      <p class="bubble top-right">Oddment!</p>
+    </div>
+    <div class="bubbleHolder bottom-right">
+      <p class="bubble bottom-right">Tweak!</p>
+    </div>
+    <button class="pause" type="button" onClick="play()">♬</button>
+    <audio autoplay loop unmuted>
+      <source
+        src="/Hedwig's Theme (Theme from Harry Potter) 4.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+    <script src="script.js"></script>
+  </body>
+</html>

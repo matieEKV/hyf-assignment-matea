@@ -1,3 +1,6 @@
+:root {
+  --primary-color: rgb(38, 31, 139);
+}
 body {
   font-family: "Open Sans", sans-serif;
   background-color: #f9fbfd;
@@ -12,9 +15,48 @@ h1,
 h2 {
   margin: 0;
 }
+nav {
+  border-bottom: 5px solid var(--primary-color);
+  max-height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 15px;
+  position: sticky;
+}
+
+nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.link-container {
+  display: flex;
+  gap: 10px;
+}
+.logo {
+  max-height: 15rem;
+  max-width: 10rem;
+}
 
 ul {
   list-style-type: none;
-  margin: 0;
+  /* margin: 5px 0; */
   padding: 0;
+}
+
+ul div {
+  border-bottom: 2px solid var(--primary-color);
+  margin: 1rem;
+  display: flex;
+}
+
+.tag {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+li {
+  margin: 1rem;
 }

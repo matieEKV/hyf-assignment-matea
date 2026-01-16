@@ -1,0 +1,173 @@
+:root {
+  --primary-animation: float 7s ease-in-out infinite;
+  --primary-border: 2px solid gold;
+}
+@font-face {
+  font-family: "Harry Potter Font";
+  src: url(./fonts/HarryP-MVZ6w.ttf);
+}
+* {
+  font-family: "Harry Potter Font", serif;
+}
+body {
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: url(great_hall.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out; /* this will make the transition smoother */
+}
+
+.introBubbleContainer {
+  background-color: white;
+  width: 60%;
+  min-height: 30px;
+  border: var(--primary-border);
+  padding: 0.5rem;
+  opacity: 75%;
+  position: relative;
+  margin: auto;
+  animation: var(--primary-animation);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.introBubble {
+  font-size: 2rem;
+  text-align: center;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .introBubbleContainer,
+  .bubbleHolder {
+    animation: none;
+  }
+}
+
+.bubbleHolder {
+  display: none;
+  background-color: white;
+  width: 15%;
+  height: 5rem;
+  animation: var(--primary-animation);
+  opacity: 75%;
+  border: var(--primary-border);
+  border-radius: 50% 50% 48% 52% / 28% 30% 70% 72%; /* created using https://9elements.github.io/fancy-border-radius/#28.50.30.52--250.200 */
+  position: absolute;
+}
+
+.bubble {
+  padding-top: 0.8rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.top-left {
+  top: 35%;
+  left: 20%;
+}
+
+.top-right {
+  top: 35%;
+  right: 20%;
+}
+
+.bottom-left {
+  top: 60%;
+  left: 10%;
+}
+
+.bottom-right {
+  top: 60%;
+  right: 10%;
+}
+
+.hat {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  height: 50%;
+  width: 50%;
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .hat {
+    max-height: 400px;
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 250px) {
+  input {
+    max-width: 70%;
+  }
+}
+input {
+  text-align: center;
+  border: var(--primary-border);
+}
+
+button {
+  margin-top: 1rem;
+  width: 4rem;
+  height: 1.5rem;
+  border: var(--primary-border);
+  border-radius: 15px;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  background-color: rgb(206, 203, 203);
+}
+
+button:active {
+  background-color: white;
+}
+
+#direction {
+  font-size: 1rem;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container {
+  min-height: 350px;
+  width: 350px;
+  margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
+}
+
+.pause {
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
