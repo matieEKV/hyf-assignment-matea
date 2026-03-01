@@ -1,5 +1,7 @@
 carrots
 broccoli
-eggplant
+garlic
 cabbage
 onion
+squash
+peas
