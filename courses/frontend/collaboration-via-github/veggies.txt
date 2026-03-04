@@ -5,3 +5,5 @@ cabbage
 onion
 squash
 peas
+pepper
+onion
