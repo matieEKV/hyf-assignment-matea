@@ -6,4 +6,3 @@ onion
 squash
 peas
 pepper
-onion
