@@ -18,6 +18,13 @@ portfolio-project/
 ├── reflections_part1.md # Initial thoughts and process
 ├── reflections_part2.md # Reflection on the review, implementation of AI suggestions, ASCII diagram and ethical issues and mitigations
 
+**\*\*\*** LEARNINGS **\*\*\***
+What have I learned from this AI review
+
+- the need of using semantic elements in HTML, particularly <main>
+- that max-width property in CSS cannot have auto as a value, as it then defaults to "none"
+- to be consistent throughout the files, if I use css variables for some colors, I should use them for all
+
 **\*\*\*** ETHICAL ISSUES, RISKS AND MITIGATIONS **\*\*\***
 
 1. Risk of slowed learning and lessened critical thinking
