@@ -28,9 +28,58 @@ function removeEveryOther(array) {
 //=========== TASK 3 -  Working with movies ===========
 import { movies } from "./movies.js";
 
+const display = document.querySelector(".list");
+
+const buttonsContainer = document
+  .querySelector(".cards-container")
+  .addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+
+    const action = button.getAttribute("data-action");
+    let data = chooseAction(action);
+    console.log(data, action);
+    display.innerHTML = Array.isArray(data)
+      ? data
+          .map((element) => {
+            return `<li>${element}</li>`;
+          })
+          .join("")
+      : data;
+  });
+
+function chooseAction(action) {
+  switch (action) {
+    case "short":
+      return getShortTitle(movies);
+    case "long":
+      return getLongTitle(movies);
+    case "eighties":
+      return getMovieCountInRange(movies);
+    case "tagged":
+      const array = addTag(movies);
+      return array.map((movie) => `${movie.title} (Tag: ${movie.type})`);
+    case "better":
+      const movieArray = getHighRatedMovies(movies);
+      return movieArray.map(
+        (movie) => `${movie.title} (Rating: ${movie.rating})`,
+      );
+    case "keyword":
+      return countMoviesByKeyword(movies);
+    case "duplicated":
+      return findDuplicated(movies);
+    case "average":
+      return getAverageRating(movies);
+    case "counts":
+      const obj = countRatedMovies();
+      return JSON.stringify(obj);
+  }
+}
 //3.1 Create an array of movies containing the movies with a short title
 function getShortTitle(movies) {
-  return movies.filter((movie) => movie.title.length <= 5);
+  return movies
+    .filter((movie) => movie.title.length <= 5)
+    .map((movie) => movie.title);
 }
 
 console.log(getShortTitle(movies)); //title: 'Burnt',title: 'Crumb',title: 'Creep', title: 'Blow' etc...
@@ -40,7 +89,9 @@ console.log(getShortTitle(movies)); //title: 'Burnt',title: 'Crumb',title: 'Cree
 //3.2 Create an array of movie titles with long movie titles
 
 function getLongTitle(movies) {
-  return movies.filter((movie) => movie.title.length >= 15);
+  return movies
+    .filter((movie) => movie.title.length >= 30)
+    .map((movie) => movie.title);
 }
 
 console.log(getLongTitle(movies)); // title: 'A Walk Among the Tombstones', title: 'A Very Harold & Kumar 3D Christmas' etc...
@@ -84,9 +135,7 @@ console.log(getTag(4.6)); //Average
 // 3.5 Using chaining, first filter the movies array to only contain the movies rated higher than 6. Now map the movies array to only contain the rating of the movies.
 
 function getHighRatedMovies(movies) {
-  return movies
-    .filter((movie) => movie.rating > 6)
-    .map((movie) => movie.rating);
+  return movies.filter((movie) => movie.rating > 6);
 }
 
 console.log(getHighRatedMovies(movies));
@@ -124,7 +173,7 @@ function findDuplicated(movies) {
       duplicatedWordMovies.push(movie);
     }
   });
-  return duplicatedWordMovies;
+  return duplicatedWordMovies.map((movie) => movie.title);
 }
 console.log(findDuplicated(movies)); //title: 'To Be or Not to Be', title: 'To Have and Have Not', title: 'Tora! Tora! Tora!', title: 'War for the Planet of the Apes' etc...
 
@@ -156,28 +205,24 @@ console.log(getAverageRating(movies)); // 6.626827026198841
 
 //3.9 Count the total number of Good, Average and Bad movies using .reduce()
 
-function countRatedMovies(movies) {
-  const totalRatings = {
-    goodMovies: getCount("Good"),
-    averageMovies: getCount("Average"),
-    badMovies: getCount("Bad"),
-  };
-  return totalRatings;
-}
-
-console.log(countRatedMovies(movies)); // { goodMovies: 2602, averageMovies: 3837, badMovies: 88 }
-
-function getCount(rating) {
+function countRatedMovies() {
   const ratedMovies = addTag(movies);
   const arrayOfRatings = ratedMovies.map((movie) => movie.type);
 
-  const count = arrayOfRatings.reduce((accumulator, element) => {
-    if (element === rating) {
-      accumulator++;
-    }
-    return accumulator;
-  }, 0);
+  const count = arrayOfRatings.reduce(
+    (accumulator, element) => {
+      if (element === "Good") {
+        accumulator.goodMovies++;
+      } else if (element === "Average") {
+        accumulator.averageMovies++;
+      } else {
+        accumulator.badMovies++;
+      }
+      return accumulator;
+    },
+    { goodMovies: 0, averageMovies: 0, badMovies: 0 },
+  );
   return count;
 }
-const total = getCount("Bad") + getCount("Good") + getCount("Average");
-console.log(total); // 6527
+
+console.log(countRatedMovies(movies)); // { goodMovies: 2602, averageMovies: 3837, badMovies: 88 }
