@@ -1,4 +1,4 @@
-//=========== TASK 1 -  Doubling of number ===========
+//=========== TASK 1 -  Doubling of odd numbers ===========
 
 function doubleOddNumbers(numArray) {
   return numArray
@@ -35,7 +35,7 @@ function getShortTitle(movies) {
 
 console.log(getShortTitle(movies)); //title: 'Burnt',title: 'Crumb',title: 'Creep', title: 'Blow' etc...
 
-//====================================================================================================================================
+//========================================================================================================
 
 //3.2 Create an array of movie titles with long movie titles
 
@@ -45,7 +45,7 @@ function getLongTitle(movies) {
 
 console.log(getLongTitle(movies)); // title: 'A Walk Among the Tombstones', title: 'A Very Harold & Kumar 3D Christmas' etc...
 
-//====================================================================================================================================
+//========================================================================================================
 
 //3.3 Count the number of movies made between 1980-1989 (including both the years)
 
@@ -56,7 +56,7 @@ function getMovieCountInRange(movies) {
 
 console.log(getMovieCountInRange(movies)); // 638
 
-//====================================================================================================================================
+//========================================================================================================
 
 // 3.4 Create a new array that has an extra key called tag. The tag is based on the rating: Good (>= 7), Average (>= 4 and < 7), Bad (< 4)
 function addTag(movies) {
@@ -79,7 +79,7 @@ function getTag(score) {
 
 console.log(getTag(4.6)); //Average
 
-//====================================================================================================================================
+//========================================================================================================
 
 // 3.5 Using chaining, first filter the movies array to only contain the movies rated higher than 6. Now map the movies array to only contain the rating of the movies.
 
@@ -91,7 +91,7 @@ function getHighRatedMovies(movies) {
 
 console.log(getHighRatedMovies(movies));
 
-//====================================================================================================================================
+//========================================================================================================
 
 //3.6 Count the total number of movies containing any of following keywords: Surfer, Alien or Benjamin.
 function countMoviesByKeyword(movies) {
@@ -113,7 +113,7 @@ console.log(countMoviesByKeyword(movies)); // 19
 
 console.log(countMoviesByKeyword(movies));
 
-//====================================================================================================================================
+//========================================================================================================
 
 //3.7 Create an array of movies where a word in the title is duplicated
 
@@ -137,7 +137,7 @@ function isDuplicated(string) {
 
 console.log(isDuplicated("one flight over")); // true
 
-//====================================================================================================================================
+//========================================================================================================
 
 //3.8 Calculate the average rating of all the movies using .reduce()
 
@@ -152,7 +152,7 @@ function getAverageRating(movies) {
 
 console.log(getAverageRating(movies)); // 6.626827026198841
 
-//====================================================================================================================================
+//========================================================================================================
 
 //3.9 Count the total number of Good, Average and Bad movies using .reduce()
 
