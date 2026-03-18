@@ -169,7 +169,7 @@ console.log(countMoviesByKeyword(movies));
 function findDuplicated(movies) {
   const duplicatedWordMovies = [];
   movies.forEach((movie) => {
-    if (!isDuplicated(movie.title)) {
+    if (isDuplicated(movie.title)) {
       duplicatedWordMovies.push(movie);
     }
   });
@@ -181,10 +181,10 @@ function isDuplicated(string) {
   const arr = string.split(" ");
   const unique = [...new Set(arr)];
 
-  return arr.join(" ") === unique.join(" ");
+  return arr.join(" ") !== unique.join(" ");
 }
 
-console.log(isDuplicated("one flight over")); // true
+console.log(isDuplicated("one flight over")); // false
 
 //========================================================================================================
 
