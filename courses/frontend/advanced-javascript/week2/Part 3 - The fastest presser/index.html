@@ -14,11 +14,20 @@
   </head>
   <body>
     <main>
-      <h1 class="win98-bar">WHO IS THE FASTEST PRESSER</h1>
+      <nav class="win98-bar nav">
+        <h1>WHO IS THE FASTEST PRESSER</h1>
+        <button class="open-options win98-btn">OPTIONS</button>
+      </nav>
       <div class="options-container">
         <div class="heading-bar win98-bar">
           <h3>Welcome to the Fastest Presser Game</h3>
           <button class="help win98-btn">?</button>
+        </div>
+        <div class="help-popup hidden">
+          <span>1 player - press "S" key</span> <br />
+          <span>2 players - press "S" and "L" key</span><br />
+          <span>3 players - press "S", "L" and "V" key</span><br />
+          <span>4 players - press "S", "L", "V" and "N" key</span>
         </div>
         <h4>Choose the settings and start the game</h4>
         <form class="options">
@@ -60,10 +69,12 @@
         </form>
       </div>
       <div class="game-board"></div>
-      <div class="countdown-container hidden">
+      <div class="countdown-container">
         <span class="countdown"></span>
       </div>
     </main>
+    <canvas id="my-canvas" class="hidden"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.13/dist/index.min.js"></script>
     <script type="module" src="./js/buildBoard.js"></script>
   </body>
 </html>

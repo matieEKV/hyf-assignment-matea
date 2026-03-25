@@ -2,11 +2,11 @@ import { startTimer } from "./timer.js";
 import { gameState } from "./game-state.js";
 import { getWinner } from "./endGame.js";
 
-const countdownContainer = document.querySelector(".countdown-container");
+const countdownContainer = document.querySelector(".top-container");
 
 //show 3 seconds countdown on the screen
 function countdown() {
-  countdownContainer.classList.remove("hidden");
+  countdownContainer?.classList.remove("hidden");
   startTimer(4, (passedTime) => {
     document.querySelector(".countdown").textContent = passedTime;
   });
@@ -49,6 +49,7 @@ function stopScore() {
   document.removeEventListener("keydown", startScore);
   getWinner();
 }
+
 let keyIndex = 0;
 function updatePlayerInfo() {
   //store the counter element for each player based on their id

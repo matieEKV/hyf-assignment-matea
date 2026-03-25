@@ -1,4 +1,4 @@
-import { closeModal } from "./modal.js";
+import { closeModal, openModal } from "./modal.js";
 import { addClass, createElements } from "./grid.js";
 import { gameState } from "./game-state.js";
 import { countdown } from "./gameLogic.js";
@@ -9,6 +9,10 @@ document
     event.preventDefault();
     buildBoard();
   });
+
+document
+  .querySelector(".open-options")
+  .addEventListener("click", () => window.location.reload());
 
 function buildBoard() {
   //store the data from the form

@@ -46,4 +46,4 @@ function createElements() {
   }
 }
 
-export { addClass, createElements };
+export { addClass, createElements, gameBoard };
