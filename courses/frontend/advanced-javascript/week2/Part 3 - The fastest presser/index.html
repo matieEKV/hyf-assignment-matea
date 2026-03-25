@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Iosevka+Charon:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fastest Presser</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="win98-bar">WHO IS THE FASTEST PRESSER</h1>
+      <div class="options-container">
+        <div class="heading-bar win98-bar">
+          <h3>Welcome to the Fastest Presser Game</h3>
+          <button class="help win98-btn">?</button>
+        </div>
+        <h4>Choose the settings and start the game</h4>
+        <form class="options">
+          <div class="small-container">
+            <p>Number of players</p>
+            <input
+              id="p1"
+              type="radio"
+              value="1"
+              name="player-number"
+              checked
+            />
+            <label for="p1">1</label>
+
+            <input id="p2" type="radio" value="2" name="player-number" />
+            <label for="p2">2</label>
+
+            <input id="p3" type="radio" value="3" name="player-number" />
+            <label for="p3">3</label>
+
+            <input id="p4" type="radio" value="4" name="player-number" />
+            <label for="p4">4</label>
+          </div>
+          <div class="small-container">
+            <p>Game duration</p>
+            <input
+              name="time"
+              id="time"
+              type="number"
+              max="60"
+              placeholder="max 60"
+              required
+            />
+            <label for="time">seconds </label>
+          </div>
+          <button class="start win98-btn" type="submit" value="Start Game">
+            Start Game
+          </button>
+        </form>
+      </div>
+      <div class="game-board"></div>
+      <div class="countdown-container hidden">
+        <span class="countdown"></span>
+      </div>
+    </main>
+    <script type="module" src="./js/buildBoard.js"></script>
+  </body>
+</html>

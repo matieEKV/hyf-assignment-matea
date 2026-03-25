@@ -1,0 +1,59 @@
+body {
+  background-color: var(--win-grey);
+}
+main {
+  width: 100%;
+  height: 100vh;
+}
+
+h1 {
+  padding-left: 0.5rem;
+  width: 100%;
+}
+
+.win98-bar {
+  background: var(--linear);
+  color: white;
+  box-shadow: var(--shadow-box);
+}
+
+.win98-btn {
+  /* windows98 style */
+  background-color: #c0c0c0;
+  border: 1px solid #ffffff;
+  font-size: 1rem;
+  box-shadow: var(--shadow-box);
+}
+
+.win98-btn:active {
+  /* windows98 style */
+  border: 1px solid #808080;
+  box-shadow:
+    1px 1px 0px 0px #ffffff,
+    inset 1px 1px 0px 0px #000000;
+  padding: 5px 9px 3px 11px;
+}
+
+/* .countdown-container {
+  width: 100vw;
+  
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  z-index: 15;
+} */
+
+.countdown {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 15rem;
+  width: fit-content;
+  font-size: var(--big-font);
+  background-image: var(--linear);
+  color: transparent;
+  background-clip: text;
+  text-align: center;
+  background-color: transparent;
+}
