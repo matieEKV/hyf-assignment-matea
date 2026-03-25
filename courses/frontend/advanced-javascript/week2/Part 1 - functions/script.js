@@ -57,7 +57,7 @@ function showPosition(position) {
     position.coords.longitude.toFixed(4);
 }
 
-//1.7
+//1.7 When called the function should wait delay seconds and then call the provided callback function
 
 function runAfterDelay(delay, callback) {
   setTimeout(callback, delay * 1000);
@@ -67,19 +67,23 @@ runAfterDelay(4, () => console.log("Here is the message delayed by 4 seconds"));
 
 //1.8 Check if the user has double-clicked on the page. A double click is two clicks within 0.5 seconds.
 // If a double click is detected, display the text "double click!" on the page.
-let counter = 0;
+let clickCounter = 0;
+
 window.addEventListener("click", isDoubleClick);
 
 function isDoubleClick() {
-  counter++;
-  setTimeout(() => window.removeEventListener("click", isDoubleClick), 500);
-  if (counter >= 2) {
+  clickCounter++;
+
+  if (clickCounter === 1) {
+    setTimeout(() => (clickCounter = 0), 500);
+  } else {
     document.querySelector(".double-click").textContent =
       "You have double clicked!!";
   }
 }
 
-//1.9
+//1.9 If shouldTellFunnyJoke is true it should call logFunnyJoke, which displays a funny joke on the page.
+// Otherwise it should call logBadJoke, which displays a bad joke on the page.
 const evaluation = document.querySelector(".funnyOrNot");
 function jokeCreator(shouldTellFunnyJoke, logFunnyJoke, logBadJoke) {
   shouldTellFunnyJoke ? logFunnyJoke() : logBadJoke();
