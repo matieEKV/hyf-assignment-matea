@@ -5,17 +5,21 @@ const startingCurrency = document.querySelector(".starting-currency");
 const endingCurrency = document.querySelector(".ending-currency");
 const currencyOptions = document.querySelectorAll(".currency");
 const swapCurrencies = document.querySelector(".swap-button");
+const flagStart = document.querySelector(".start-flag");
+const flagEnd = document.querySelector(".end-flag");
 
 //event listeners
 
 inputAmount.addEventListener("input", convertAmount);
 
 for (let option of currencyOptions) {
-  option.addEventListener("change", convertAmount);
+  option.addEventListener("change", () => {
+    convertAmount();
+    changeFlag();
+  });
 }
 
 swapCurrencies.addEventListener("click", () => {
-  console.log("i was clicked");
   [startingCurrency.value, endingCurrency.value] = [
     endingCurrency.value,
     startingCurrency.value,
@@ -24,24 +28,37 @@ swapCurrencies.addEventListener("click", () => {
     endingCurrency.value,
     startingCurrency.value,
   );
+  changeFlag();
 });
-//fetch the currencies
+
+//fetching function
+
 let currencies;
-async function fetchCurrencies() {
+let globalFlags;
+async function fetchData() {
   try {
+    //fetching the currencies
     const currenciesResponse = await fetch(
       "https://open.er-api.com/v6/latest/USD",
     );
-    const response = await currenciesResponse.json();
-    currencies = response.rates;
+    const currencyData = await currenciesResponse.json();
+    currencies = currencyData.rates;
     outputAmount.textContent = getRates("DKK", "EUR"); //set the default amount to be converted immediately
+    //fetching flags
+    const flagsResponse = await fetch(
+      "https://gist.githubusercontent.com/ibrahimhajjaj/a0e39e7330aebf0feb49912f1bf9062f/raw/d160e7d3b0e11ea3912e97a1b3b25b359746c86a/currencies-with-flags.json",
+    );
+    const flagData = await flagsResponse.json();
+    globalFlags = flagData;
+
     populateOptions(currencies);
   } catch (err) {
-    throw "Fetching currencies went wrong with the error:";
+    console.log("Fetching currencies went wrong with the error:", err);
   }
 }
-fetchCurrencies();
+fetchData();
 
+//populate options for the currencies
 function populateOptions(currencies) {
   let out = "";
   for (const currency in currencies) {
@@ -51,9 +68,9 @@ function populateOptions(currencies) {
   for (let currencyOption of currencyOptions) {
     currencyOption.innerHTML = out;
   }
-
   startingCurrency.value = "EUR";
   endingCurrency.value = "DKK";
+  changeFlag();
 }
 
 function convertAmount() {
@@ -66,4 +83,20 @@ function getRates(to, from) {
   return (inputAmount.value * (1 / currencies[from]) * currencies[to]).toFixed(
     2,
   );
+}
+
+function changeFlag() {
+  let fromFlag, toFlag;
+  if (globalFlags) {
+    fromFlag = globalFlags.find(
+      (element) => element.code === startingCurrency.value,
+    );
+    toFlag = globalFlags.find(
+      (element) => element.code === endingCurrency.value,
+    );
+    const toCountryCode = toFlag.countryCode.toLowerCase();
+    const fromCountryCode = fromFlag.countryCode.toLowerCase();
+    flagStart.innerHTML = `<img src="${`https://flagcdn.com/w80/${fromCountryCode}.png`}" alt="flag">`;
+    flagEnd.innerHTML = `<img src="${`https://flagcdn.com/w80/${toCountryCode}.png`}" alt="flag">`;
+  }
 }

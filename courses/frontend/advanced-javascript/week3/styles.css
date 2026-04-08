@@ -4,6 +4,7 @@
   --highlight-color: #fbbf24;
   --text-color: #f8fafc;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -121,4 +122,18 @@ fieldset {
   .heading {
     font-size: 3.5rem;
   }
+}
+
+.flag {
+  height: 80%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  object-fit: contain;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 }
