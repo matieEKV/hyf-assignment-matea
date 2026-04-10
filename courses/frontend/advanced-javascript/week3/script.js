@@ -12,7 +12,7 @@ const flagEnd = document.querySelector(".end-flag");
 
 inputAmount.addEventListener("input", convertAmount);
 
-for (let option of currencyOptions) {
+for (const option of currencyOptions) {
   option.addEventListener("change", () => {
     convertAmount();
     changeFlag();
@@ -24,10 +24,11 @@ swapCurrencies.addEventListener("click", () => {
     endingCurrency.value,
     startingCurrency.value,
   ];
-  outputAmount.textContent = getRates(
-    endingCurrency.value,
-    startingCurrency.value,
-  );
+  // outputAmount.textContent = getRates(
+  //   endingCurrency.value,
+  //   startingCurrency.value,
+  // );
+  convertAmount();
   changeFlag();
 });
 
