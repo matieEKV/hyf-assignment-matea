@@ -6,29 +6,24 @@
 
 body {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: rgb(214, 182, 182);
-  /* margin: 1rem; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 2rem;
 }
 
-main {
+.container {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-h1 {
+.heading {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2rem;
   color: rgb(82, 63, 63);
-  /* position: fixed;
-  top: 1rem;
-  left: 50%;
-  transform: translate(-50%, 0); */
 }
 
 .outside-container {
@@ -74,7 +69,7 @@ h1 {
   border: 2px solid rgb(93, 64, 64);
   width: 100%;
   height: 90%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 @media (max-width: 700px) {

@@ -30,14 +30,14 @@ import { movies } from "./movies.js";
 
 const display = document.querySelector(".list");
 
-const buttonsContainer = document
+document
   .querySelector(".cards-container")
   .addEventListener("click", (event) => {
     const button = event.target.closest("button[data-action]");
     if (!button) return;
 
     const action = button.getAttribute("data-action");
-    let data = chooseAction(action);
+    const data = chooseAction(action);
     console.log(data, action);
     display.innerHTML = Array.isArray(data)
       ? data
@@ -169,7 +169,7 @@ console.log(countMoviesByKeyword(movies));
 function findDuplicated(movies) {
   const duplicatedWordMovies = [];
   movies.forEach((movie) => {
-    if (isDuplicated(movie.title)) {
+    if (isDuplicated(movie.title.toLowerCase())) {
       duplicatedWordMovies.push(movie);
     }
   });
