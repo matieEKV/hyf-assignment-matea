@@ -102,6 +102,10 @@ function changeFlag() {
   );
   const toCountryCode = toFlag.countryCode.toLowerCase();
   const fromCountryCode = fromFlag.countryCode.toLowerCase();
-  flagStart.innerHTML = `<img src="${`https://flagcdn.com/w80/${fromCountryCode}.png`}" alt="flag">`;
-  flagEnd.innerHTML = `<img src="${`https://flagcdn.com/w80/${toCountryCode}.png`}" alt="flag">`;
+  displayFlag(flagStart, fromCountryCode);
+  displayFlag(flagEnd, toCountryCode);
+}
+
+function displayFlag(position, currency) {
+  position.innerHTML = `<img src="${`https://flagcdn.com/w80/${currency}.png`}" alt="flag">`;
 }
