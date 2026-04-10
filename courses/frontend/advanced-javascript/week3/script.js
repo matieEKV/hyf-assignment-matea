@@ -3,7 +3,7 @@ const inputAmount = document.querySelector(".input-amount");
 const outputAmount = document.querySelector(".output-amount");
 const startingCurrency = document.querySelector(".starting-currency");
 const endingCurrency = document.querySelector(".ending-currency");
-const currencyOptions = document.querySelectorAll(".currency");
+const currencyDropdown = document.querySelectorAll(".currency");
 const swapCurrencies = document.querySelector(".swap-button");
 const flagStart = document.querySelector(".start-flag");
 const flagEnd = document.querySelector(".end-flag");
@@ -12,8 +12,12 @@ const flagEnd = document.querySelector(".end-flag");
 
 inputAmount.addEventListener("input", convertAmount);
 
-for (const option of currencyOptions) {
-  option.addEventListener("change", () => {
+setupListener(startingCurrency);
+setupListener(endingCurrency);
+
+//attach event listener on each dropdown element
+function setupListener(element) {
+  element.addEventListener("change", () => {
     convertAmount();
     changeFlag();
   });
@@ -64,10 +68,9 @@ function populateOptions(currencies) {
   for (const currency in currencies) {
     out += `<option value="${currency}">${currency}</option>`;
   }
-
-  for (let currencyOption of currencyOptions) {
-    currencyOption.innerHTML = out;
-  }
+  //populate dropdown elements
+  startingCurrency.innerHTML = out;
+  endingCurrency.innerHTML = out;
 
   startingCurrency.value = "EUR";
   endingCurrency.value = "DKK";
