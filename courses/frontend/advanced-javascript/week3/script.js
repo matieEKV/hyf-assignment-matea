@@ -24,10 +24,6 @@ swapCurrencies.addEventListener("click", () => {
     endingCurrency.value,
     startingCurrency.value,
   ];
-  // outputAmount.textContent = getRates(
-  //   endingCurrency.value,
-  //   startingCurrency.value,
-  // );
   convertAmount();
   changeFlag();
 });
@@ -36,7 +32,7 @@ swapCurrencies.addEventListener("click", () => {
 
 let currencies;
 let globalFlags;
-async function fetchData() {
+async function fetchCurrencyRates() {
   try {
     //fetching the currencies
     const currenciesResponse = await fetch(
@@ -44,20 +40,23 @@ async function fetchData() {
     );
     const currencyData = await currenciesResponse.json();
     currencies = currencyData.rates;
-    outputAmount.textContent = getRates("DKK", "EUR"); //set the default amount to be converted immediately
-    //fetching flags
-    const flagsResponse = await fetch(
-      "https://gist.githubusercontent.com/ibrahimhajjaj/a0e39e7330aebf0feb49912f1bf9062f/raw/d160e7d3b0e11ea3912e97a1b3b25b359746c86a/currencies-with-flags.json",
-    );
-    const flagData = await flagsResponse.json();
-    globalFlags = flagData;
-
-    populateOptions(currencies);
+    fetchFlags();
   } catch (err) {
     console.log("Fetching currencies went wrong with the error:", err);
   }
 }
-fetchData();
+fetchCurrencyRates();
+
+async function fetchFlags() {
+  //fetching flags
+  const flagsResponse = await fetch(
+    "https://gist.githubusercontent.com/ibrahimhajjaj/a0e39e7330aebf0feb49912f1bf9062f/raw/d160e7d3b0e11ea3912e97a1b3b25b359746c86a/currencies-with-flags.json",
+  );
+  const flagData = await flagsResponse.json();
+  globalFlags = flagData;
+  populateOptions(currencies);
+  initUI();
+}
 
 //populate options for the currencies
 function populateOptions(currencies) {
@@ -72,6 +71,11 @@ function populateOptions(currencies) {
   startingCurrency.value = "EUR";
   endingCurrency.value = "DKK";
   changeFlag();
+}
+
+//set the default amount to be converted immediately
+function initUI() {
+  outputAmount.textContent = getRates("DKK", "EUR");
 }
 
 function convertAmount() {
