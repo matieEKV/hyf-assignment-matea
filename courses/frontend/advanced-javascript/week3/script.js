@@ -68,6 +68,7 @@ function populateOptions(currencies) {
   for (let currencyOption of currencyOptions) {
     currencyOption.innerHTML = out;
   }
+
   startingCurrency.value = "EUR";
   endingCurrency.value = "DKK";
   changeFlag();
@@ -91,17 +92,16 @@ function getRates(to, from) {
 }
 
 function changeFlag() {
-  let fromFlag, toFlag;
-  if (globalFlags) {
-    fromFlag = globalFlags.find(
-      (element) => element.code === startingCurrency.value,
-    );
-    toFlag = globalFlags.find(
-      (element) => element.code === endingCurrency.value,
-    );
-    const toCountryCode = toFlag.countryCode.toLowerCase();
-    const fromCountryCode = fromFlag.countryCode.toLowerCase();
-    flagStart.innerHTML = `<img src="${`https://flagcdn.com/w80/${fromCountryCode}.png`}" alt="flag">`;
-    flagEnd.innerHTML = `<img src="${`https://flagcdn.com/w80/${toCountryCode}.png`}" alt="flag">`;
-  }
+  if (!globalFlags) return;
+
+  const fromFlag = globalFlags.find(
+    (element) => element.code === startingCurrency.value,
+  );
+  const toFlag = globalFlags.find(
+    (element) => element.code === endingCurrency.value,
+  );
+  const toCountryCode = toFlag.countryCode.toLowerCase();
+  const fromCountryCode = fromFlag.countryCode.toLowerCase();
+  flagStart.innerHTML = `<img src="${`https://flagcdn.com/w80/${fromCountryCode}.png`}" alt="flag">`;
+  flagEnd.innerHTML = `<img src="${`https://flagcdn.com/w80/${toCountryCode}.png`}" alt="flag">`;
 }
