@@ -20,7 +20,8 @@ setupListener(counterCurrencyDropdown);
 function setupListener(element) {
   element.addEventListener("change", () => {
     convertAmount();
-    changeFlag();
+    changeFlag(baseCurrencyDropdown.value, flagStart);
+    changeFlag(counterCurrencyDropdown.value, flagEnd);
   });
 }
 
@@ -30,7 +31,8 @@ swapCurrencies.addEventListener("click", () => {
     baseCurrencyDropdown.value,
   ];
   convertAmount();
-  changeFlag();
+  changeFlag(baseCurrencyDropdown.value, flagStart);
+  changeFlag(counterCurrencyDropdown.value, flagEnd);
 });
 
 //fetching function
@@ -68,7 +70,8 @@ function populateOptions(currencies) {
 
   baseCurrencyDropdown.value = "EUR";
   counterCurrencyDropdown.value = "DKK";
-  changeFlag();
+  changeFlag(baseCurrencyDropdown.value, flagStart);
+  changeFlag(counterCurrencyDropdown.value, flagEnd);
 }
 
 //set the default amount to be converted immediately
@@ -88,21 +91,16 @@ function getRates(to, from) {
   );
 }
 
-function changeFlag() {
-  if (!globalFlags) return;
-
-  const fromFlag = globalFlags.find(
-    (element) => element.code === baseCurrencyDropdown.value,
+function changeFlag(currencyCode, flagElement) {
+  const newFlag = globalFlags.find(
+    (currency) => currency.code === currencyCode,
   );
-  const toFlag = globalFlags.find(
-    (element) => element.code === counterCurrencyDropdown.value,
-  );
-  const toCountryCode = toFlag.countryCode.toLowerCase();
-  const fromCountryCode = fromFlag.countryCode.toLowerCase();
-  displayFlag(flagStart, fromCountryCode);
-  displayFlag(flagEnd, toCountryCode);
-}
 
-function displayFlag(position, currency) {
-  position.innerHTML = `<img src="${`https://flagcdn.com/w80/${currency}.png`}" alt="flag">`;
+  if (newFlag) {
+    const countryCode = newFlag.countryCode.toLowerCase();
+    flagElement.innerHTML = `<img src="${`https://flagcdn.com/w80/${countryCode}.png`}" alt="flag">`;
+    flagElement.classList.remove("hidden");
+  } else {
+    flagElement.classList.add("hidden");
+  }
 }
