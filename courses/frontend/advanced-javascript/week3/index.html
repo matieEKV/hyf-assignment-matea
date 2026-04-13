@@ -15,6 +15,7 @@
   </head>
   <body>
     <main>
+      <div class="error-box hidden"><strong>System error: </strong><span class="error-message"></span></div>
       <h1 class="heading">CURRENCY CONVERTER</h1>
       <div class="converter-container">
         <div class="input-bar-container">
@@ -28,7 +29,7 @@
               maxlength="8"
             />
             <fieldset>
-                <div class="flag start-flag">Fl</div>
+                <div class="flag" id="start-flag">Fl</div>
               <select class="starting-currency currency" name="currency" min="0"></select>
             </fieldset>
           </div>
@@ -47,7 +48,7 @@
             <div class="input-bar">
               <p class="output-amount amount"></p>
               <fieldset>
-                <div class="flag end-flag">Fl</div>
+                <div class="flag" id="end-flag">Fl</div>
                 <select class="ending-currency currency" name="currency"></select>
               </fieldset>
             </div>
@@ -55,6 +56,6 @@
         </div>
       </div>
     </main>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>

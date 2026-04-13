@@ -165,3 +165,17 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+.error-box {
+  border: 2px solid red;
+  height: 5rem;
+  width: 20rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  position: fixed;
+}
