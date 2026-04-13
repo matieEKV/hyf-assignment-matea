@@ -1,0 +1,70 @@
+.options-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--win-grey);
+  border: 1px solid var(--win-white);
+  box-shadow:
+    1px 1px 0 var(--win-black),
+    -1px -1px 0 var(--win-grey),
+    inset -1px -1px 0 var(--win-shadow);
+}
+
+.options,
+.options-container {
+  /* padding: 0 2rem 2rem 2rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.15rem;
+}
+
+.small-container {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem;
+}
+
+.heading-bar {
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.start {
+  position: relative;
+  bottom: 10%;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+fieldset {
+  margin: 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.help {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative; /* The Anchor */
+  display: inline-block;
+}
+
+.help-popup {
+  position: absolute;
+  bottom: 100%;
+  left: 80%;
+  width: 200px;
+  background: var(--win-help);
+  border: 1px solid black;
+  padding: 5px;
+  z-index: 1000;
+}

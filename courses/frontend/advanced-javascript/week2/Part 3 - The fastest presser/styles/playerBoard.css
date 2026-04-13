@@ -1,0 +1,43 @@
+.player-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  min-width: 0;
+}
+
+.game-board {
+  width: 100vw;
+  height: 100%;
+  display: grid;
+}
+
+.player {
+  box-shadow: var(--shadow-box);
+  padding: 1rem;
+}
+
+.which-key,
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.which-key {
+  width: 55%;
+  height: 40%;
+  padding: 1rem;
+  box-shadow: var(--shadow-box);
+  font-size: var(--small-font);
+}
+
+.counter {
+  width: 55%;
+  height: 40%;
+  box-shadow: var(--shadow-box);
+  font-size: var(--big-font);
+  text-align: center;
+  padding: 1rem;
+}

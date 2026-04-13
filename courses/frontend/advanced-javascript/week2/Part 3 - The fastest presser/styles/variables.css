@@ -1,0 +1,19 @@
+:root {
+  --win-grey: #c0c0c0;
+  --win-white: #ffffff;
+  --win-shadow: #808080;
+  --win-black: #000000;
+  --win-darkblue: #000080;
+  --win-lightblue: #1084d0;
+  --win-help: #ffffcc;
+  --shadow-box:
+    1px 1px 0px 0px #000000, inset -1px -1px 0px 0px #808080,
+    -1px -1px 0px 0px #ffffff;
+  --linear: linear-gradient(
+    to right,
+    var(--win-darkblue),
+    var(--win-lightblue)
+  );
+  --big-font: 10rem;
+  --small-font: 3rem;
+}
