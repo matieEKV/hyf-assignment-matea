@@ -1,4 +1,4 @@
-import { currencies } from "./fetchCurrencyRates.js";
+import { fetchCurrencyRates } from "./fetchCurrencyRates.js";
 
 //DOM ELEMENTS SELECTORS
 const inputAmount = document.querySelector(".input-amount");
@@ -15,6 +15,9 @@ inputAmount.addEventListener("input", convertAmount);
 
 setupListener(baseCurrencyDropdown);
 setupListener(counterCurrencyDropdown);
+
+const currencies = await fetchCurrencyRates();
+const globalFlags = await fetchFlags();
 
 //attach event listener on each dropdown element
 function setupListener(element) {
@@ -51,8 +54,6 @@ async function fetchFlags() {
     return [];
   }
 }
-
-const globalFlags = await fetchFlags();
 
 populateOptions(currencies);
 initUI();
