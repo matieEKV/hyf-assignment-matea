@@ -1,3 +1,4 @@
+import ScreenshotService from "./APIHandler/ScreenshotService.js";
 import Button from "./htmlBlueprint/Button.js";
 import Container from "./htmlBlueprint/Container.js";
 import Heading from "./htmlBlueprint/Heading.js";
@@ -18,3 +19,10 @@ inputEl.render(inputContainer.domElement);
 
 const label = new Label("label", "insert URL", "input1");
 label.render(inputContainer.domElement);
+
+submitButton.domElement.addEventListener("click", () => {
+  const apiConnection = new ScreenshotService();
+  const screenshot = apiConnection.getScreenshot();
+});
+
+// calling API
