@@ -1,4 +1,5 @@
-import { RAPID_API_KEY } from "../../secret.js";
+import { RAPID_API_KEY, CRUD_ENDPOINT } from "../../secret.js";
+import ApiError from "../Errors/APIerror.js";
 
 async function getScreenshot(encodedURL) {
   const inputURL = encodedURL;
@@ -11,19 +12,23 @@ async function getScreenshot(encodedURL) {
       "Content-Type": "application/json",
     },
   };
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    console.log(result.screenshotUrl);
-    return result.screenshotUrl;
-  } catch (error) {
-    console.error(error);
+
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new ApiError("Failed to take a screenshot", response);
   }
+
+  const screenshot = await response.json();
+  console.log("screenshot", screenshot);
+  console.log("screenshotURL", screenshot.screenshotUrl);
+  return screenshot.screenshotUrl;
+  // const blob = await response.blob();
+  // return URL.createObjectURL(blob); // use as <img src>
 }
 
 async function storeScreenshot(url, imageUrl) {
-  const CRUD =
-    "https://crudcrud.com/api/43360d3a600f467791ec330561a691bf/screenshot";
+  console.log("SENDING TO CRUDCRUD:", JSON.stringify({ url, imageUrl }));
+  const CRUD = CRUD_ENDPOINT;
   const response = await fetch(CRUD, {
     method: "POST",
     headers: {
@@ -32,9 +37,22 @@ async function storeScreenshot(url, imageUrl) {
     },
     body: JSON.stringify({ url, imageUrl }),
   });
-  if (!response.ok)
-    //throw an error
-    return response.json();
+  if (!response.ok) {
+    throw new ApiError("Screenshot saving failed", response);
+  }
+  return response.json();
 }
 
-export { getScreenshot, storeScreenshot };
+async function deleteFromCrudCrud(id) {
+  const CRUD = `https://crudcrud.com/api/efd7172c4a814691a3225afbf6d0e5ca/screenshot/${id}`;
+  const response = await fetch(CRUD, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new ApiError("Screenshot not deleted", response);
+  }
+
+  return true;
+}
+
+export { getScreenshot, storeScreenshot, deleteFromCrudCrud };
