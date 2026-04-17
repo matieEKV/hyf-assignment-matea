@@ -12,9 +12,10 @@ export default class Input extends HTMLelement {
     this.domElement.id = this.id;
   }
 
-  setAttributes(name, value) {
-    this.domElement.setAttributes("name", name);
-    this.domElement.setAttributes("value", value);
+  setAttributes(type, value, name) {
+    this.domElement.setAttribute("type", type);
+    this.domElement.setAttribute("value", value);
+    this.domElement.setAttribute("name", name);
   }
 
   render(target) {
