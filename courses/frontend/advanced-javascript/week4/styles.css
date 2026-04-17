@@ -62,12 +62,12 @@ body {
   gap: 1rem;
   padding-top: 1rem;
   border-top: var(--primary-border);
+  padding-bottom: 3rem;
 }
 
 .card-wrapper {
   max-width: 100rem;
   width: 100%;
-  border: var(--primary-border);
 }
 
 .screenshot-img {
@@ -94,7 +94,7 @@ body {
 .hidden {
   display: none;
   border: var(--secondary--border);
-  position: absolute;
+  position: fixed;
   bottom: 2rem;
   right: 2rem;
   z-index: 10;
