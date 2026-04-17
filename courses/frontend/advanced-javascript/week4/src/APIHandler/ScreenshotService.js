@@ -19,15 +19,12 @@ async function getScreenshot(encodedURL) {
   }
 
   const screenshot = await response.json();
-  console.log("screenshot", screenshot);
-  console.log("screenshotURL", screenshot.screenshotUrl);
   return screenshot.screenshotUrl;
   // const blob = await response.blob();
   // return URL.createObjectURL(blob); // use as <img src>
 }
 
 async function storeScreenshot(url, imageUrl) {
-  console.log("SENDING TO CRUDCRUD:", JSON.stringify({ url, imageUrl }));
   const CRUD = CRUD_ENDPOINT;
   const response = await fetch(CRUD, {
     method: "POST",
@@ -51,7 +48,6 @@ async function deleteFromCrudCrud(id) {
   if (!response.ok) {
     throw new ApiError("Screenshot not deleted", response);
   }
-
   return true;
 }
 

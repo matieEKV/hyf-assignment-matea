@@ -12,6 +12,7 @@ import Label from "./src/htmlBlueprint/Label.js";
 import ScreenshotCard from "./src/htmlBlueprint/ScreenshotCard.js";
 import Screenshot from "./src/screenshot/Screenshot.js";
 
+let checked;
 const heading = new Heading("h1", "heading", "Screenshot generator");
 heading.render();
 
@@ -52,10 +53,8 @@ async function handleScreenshotOperation() {
 
   const imageUrl = await getScreenshot(inputURL);
   const crudResponse = await storeScreenshot(inputURL, imageUrl);
-  console.log(imageUrl);
   const screenshot = new Screenshot(crudResponse._id, inputValue, imageUrl);
   const screenshotCard = new ScreenshotCard(screenshot);
-  console.log(screenshot);
   galleryContainer.domElement.append(screenshotCard.container.domElement);
   submitButton.domElement.innerText = "Submit";
 }
@@ -72,18 +71,30 @@ deleteBtn.domElement.addEventListener("click", deleteScreenshot);
 
 //delete the chosen screenshots
 async function deleteScreenshot() {
+  deleteBtn.domElement.innerText = "DELETING...";
   const ids = getSelectedValue();
 
   for (const id of ids) {
-    await deleteFromCrudCrud(id);
+    const isDeleted = await deleteFromCrudCrud(id);
+    if (isDeleted) {
+      for (const check of checked) {
+        check.closest("div").remove(); //remove the entire container of deleted image from the DOM
+      }
+    }
+    deleteBtn.domElement.innerText = "DELETE";
   }
-
-  //TODO need to remove the actual elements from the DOM of the deleted screenshots
+  deleteBtn.domElement.style.display = "none";
 }
 
 //check for values of selected checkboxes
 function getSelectedValue() {
-  const checked = document.querySelectorAll(".card-input:checked");
+  checked = document.querySelectorAll(".card-input:checked");
   const arrayOfChecked = Array.from(checked); //convert nodelist to array
   return arrayOfChecked.map((input) => input.value);
+}
+
+//check if all images are deleted
+function isEmpty() {
+  console.log(galleryContainer.domElement.children);
+  return galleryContainer.domElement.children.length === 1; //button element is always visible
 }
