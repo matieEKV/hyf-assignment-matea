@@ -1,0 +1,7 @@
+carrots
+broccoli
+garlic
+cabbage
+onion
+squash
+peas
