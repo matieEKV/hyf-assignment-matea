@@ -49,7 +49,7 @@ async function handleScreenshotOperation() {
   }
   const inputURL = encodeURIComponent(inputValue);
 
-  submitButton.domElement.innerText = "Loading..."; //show loading while taking the screenshot
+  submitButton.domElement.innerText = "LOADING..."; //show loading while taking the screenshot
 
   const imageUrl = await getScreenshot(inputURL);
   const crudResponse = await storeScreenshot(inputURL, imageUrl);
@@ -91,10 +91,4 @@ function getSelectedValue() {
   checked = document.querySelectorAll(".card-input:checked");
   const arrayOfChecked = Array.from(checked); //convert nodelist to array
   return arrayOfChecked.map((input) => input.value);
-}
-
-//check if all images are deleted
-function isEmpty() {
-  console.log(galleryContainer.domElement.children);
-  return galleryContainer.domElement.children.length === 1; //button element is always visible
 }
