@@ -41,11 +41,12 @@ export const Footer = () => {
             <a href="https://tiktok.com">Tiktok</a>
           </li>
           <li>
-            <a href="https://google.com">On the streets at night</a>
+            <a href="https://linkedin.com">LinkedIn</a>
           </li>
           <li>
-            <a href="https://linkedin.com">LINKEDIN</a>
+            <a href="https://google.com">On the streets at night</a>
           </li>
+
           {/* 🧑🏽‍🚀 Task - Week 2 */}
           {/* Create a <SocialMediaItem /> component and replace all of the list items! */}
           {/* SocialMediaItem should accept the following props: url, title, icon. */}
