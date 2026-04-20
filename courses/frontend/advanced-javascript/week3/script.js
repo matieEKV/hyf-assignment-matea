@@ -13,20 +13,19 @@ const flagEnd = document.querySelector("#end-flag");
 
 inputAmount.addEventListener("input", convertAmount);
 
-setupListener(baseCurrencyDropdown);
-setupListener(counterCurrencyDropdown);
-
 const currencies = await fetchCurrencyRates();
 const globalFlags = await fetchFlags();
 
 //attach event listener on each dropdown element
-function setupListener(element) {
-  element.addEventListener("change", () => {
-    convertAmount();
-    changeFlag(baseCurrencyDropdown.value, flagStart);
-    changeFlag(counterCurrencyDropdown.value, flagEnd);
-  });
-}
+
+baseCurrencyDropdown.addEventListener("change", () => {
+  convertAmount();
+  changeFlag(baseCurrencyDropdown.value, flagStart);
+});
+counterCurrencyDropdown.addEventListener("change", () => {
+  convertAmount();
+  changeFlag(counterCurrencyDropdown.value, flagEnd);
+});
 
 swapCurrencies.addEventListener("click", () => {
   [baseCurrencyDropdown.value, counterCurrencyDropdown.value] = [
