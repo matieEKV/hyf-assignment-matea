@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import styles from './Footer.module.css';
+import styles from "./Footer.module.css";
 
 export const Footer = () => {
   const { pathname } = useLocation();
@@ -8,7 +8,10 @@ export const Footer = () => {
     <footer className={pathname !== "/" ? styles.footer : styles.hidden}>
       <div className={styles.footerDescription}>
         <h3>Galactica</h3>
-        <p>Explore the universe and beyond. Your journey to the stars starts here.</p>
+        <p>
+          Explore the universe and beyond. Your journey to the stars starts
+          here.
+        </p>
         <p>&copy; 2024 Galactica. All rights reserved.</p>
       </div>
       {/* 🧑🏽‍🚀 Task - Week 2 */}
@@ -40,6 +43,9 @@ export const Footer = () => {
           <li>
             <a href="https://google.com">On the streets at night</a>
           </li>
+          <li>
+            <a href="https://linkedin.com">LINKEDIN</a>
+          </li>
           {/* 🧑🏽‍🚀 Task - Week 2 */}
           {/* Create a <SocialMediaItem /> component and replace all of the list items! */}
           {/* SocialMediaItem should accept the following props: url, title, icon. */}
@@ -48,4 +54,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-}
+};
