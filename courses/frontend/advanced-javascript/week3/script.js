@@ -14,7 +14,7 @@ const flagEnd = document.querySelector("#end-flag");
 inputAmount.addEventListener("input", convertAmount);
 
 const currencies = await fetchCurrencyRates();
-const globalFlags = await fetchFlags();
+let globalFlags = [];
 
 //attach event listener on each dropdown element
 
@@ -54,10 +54,6 @@ async function fetchFlags() {
   }
 }
 
-populateOptions(currencies);
-initUI();
-fetchFlags();
-
 //populate options for the currencies
 function populateOptions(currencies) {
   let out = "";
@@ -72,11 +68,6 @@ function populateOptions(currencies) {
   counterCurrencyDropdown.value = "DKK";
   changeFlag(baseCurrencyDropdown.value, flagStart);
   changeFlag(counterCurrencyDropdown.value, flagEnd);
-}
-
-//set the default amount to be converted immediately
-function initUI() {
-  outputAmount.textContent = getRates("DKK", "EUR");
 }
 
 function convertAmount() {
@@ -104,3 +95,18 @@ function changeFlag(currencyCode, flagElement) {
     flagElement.classList.add("hidden");
   }
 }
+
+// initialize the UI and make it the entry point of the app
+function initUI() {
+  populateOptions(currencies);
+  outputAmount.textContent = getRates("DKK", "EUR");
+
+  fetchFlags().then((data) => {
+    globalFlags = data;
+
+    changeFlag(baseCurrencyDropdown.value, flagStart);
+    changeFlag(counterCurrencyDropdown.value, flagEnd);
+  });
+}
+
+initUI();
