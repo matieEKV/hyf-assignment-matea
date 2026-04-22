@@ -1,0 +1,15 @@
+.partnersContainer {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  place-items: center;
+  gap: 2rem;
+  border-top: 0.3rem solid white;
+}
+
+.description {
+  max-width: 30rem;
+  margin-top: 1rem;
+  text-align: justify;
+  line-height: 1.5rem;
+}

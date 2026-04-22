@@ -1,0 +1,18 @@
+.valuesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 2rem;
+}
+
+.valueDescription {
+  line-height: 1.3rem;
+}
+
+.valueNumber {
+  font-size: 3.5rem;
+}
+
+.valueTitle {
+  border-bottom: 0.3rem solid white;
+  margin-bottom: 1rem;
+}
