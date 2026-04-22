@@ -1,0 +1,30 @@
+/* .crewContainer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(20rem, 1fr));
+  gap: 2rem;
+} */
+
+.crewHolder {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem;
+  text-align: justify;
+}
+
+.memberName {
+  border-bottom: 0.3rem solid white;
+  margin-bottom: 1rem;
+}
+.memberImg {
+  height: auto;
+  width: 100%;
+  max-width: 20rem;
+  max-height: 20rem;
+  object-fit: cover;
+}
+
+@media (max-width: 660px) {
+  .crewHolder {
+    flex-wrap: wrap;
+  }
+}

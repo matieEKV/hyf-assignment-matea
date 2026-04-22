@@ -1,9 +1,6 @@
+import styles from "./OurCrew.module.css";
+
 export const OurCrew = () => {
-  // 🧑🏽‍🚀 Task - Week 1
-  // Create the "Our Crew section".
-  // Use the descriptions provided in /src/pages/AboutUsPage/README.md.
-  // Use the pictures from /public/crew.
-  // Some inspiration ideas can be found in /data/inspiration_about_us.
   const crew = [
     {
       id: 1,
@@ -42,14 +39,16 @@ export const OurCrew = () => {
     },
   ];
   return (
-    <>
+    <section className={styles.crewContainer}>
       {crew.map((member) => (
-        <section key={member.id} className="crew-holder">
-          <img className="member-img" src={member.image} />
-          <h3 className="member-name">{member.name}</h3>
-          <p className="member-desc">{member.description}</p>
+        <section key={member.id} className={styles.crewHolder}>
+          <img className={styles.memberImg} src={member.image} />
+          <div className={styles.infoContainer}>
+            <h3 className={styles.memberName}>{member.name}</h3>
+            <p className={styles.memberDescription}>{member.description}</p>
+          </div>
         </section>
       ))}
-    </>
+    </section>
   );
 };
