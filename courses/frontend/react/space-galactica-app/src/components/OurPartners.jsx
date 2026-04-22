@@ -1,3 +1,5 @@
+import styles from "./OurPartners.module.css";
+
 export const OurPartners = () => {
   // 🧑🏽‍🚀 Task - Week 1
   // Create the "Our Partners section".
@@ -16,13 +18,19 @@ export const OurPartners = () => {
   ];
   return (
     <>
-      <h4>
+      <p className={styles.description}>
         We collaborate with some of the most respected names in the space and
         technology industries to make every journey extraordinary.
-      </h4>
-      {partners.map((partner) => (
-        <img className="partner-image" key={partner.id} src={partner.image} />
-      ))}
+      </p>
+      <section className={styles.partnersContainer}>
+        {partners.map((partner) => (
+          <img
+            className={styles.partnerImage}
+            key={partner.id}
+            src={partner.image}
+          />
+        ))}
+      </section>
     </>
   );
 };
