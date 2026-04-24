@@ -5,7 +5,7 @@ let timerInterval;
 function startTimer(time, onTick) {
   if (!timerInterval) {
     timerInterval = setInterval(() => {
-      time -= 1;
+      time--;
       if (onTick) {
         onTick(time);
       }
