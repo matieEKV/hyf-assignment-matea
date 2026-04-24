@@ -1,6 +1,6 @@
-import { closeModal, openModal } from "./modal.js";
+import { closeModal } from "./modal.js";
 import { addClass, createElements } from "./grid.js";
-import { gameState } from "./game-state.js";
+import { gameState } from "./gameState.js";
 import { countdown } from "./gameLogic.js";
 
 document

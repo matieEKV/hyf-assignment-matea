@@ -15,7 +15,8 @@ function getThree() {
 }
 
 arrayOfFunctions.forEach((element) => element());
-
+variableFunction();
+usualFunction();
 //2.2 Create a function as a const and try creating a function normally. Call both functions
 const variableFunction = function () {
   console.log("I was called from a variable");
@@ -24,9 +25,6 @@ const variableFunction = function () {
 function usualFunction() {
   console.log("I was called from a usual function");
 }
-
-variableFunction();
-usualFunction();
 
 //2.3 Create an object that has a key whose value is a function. Try calling this function.
 

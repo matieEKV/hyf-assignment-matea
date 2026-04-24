@@ -1,5 +1,5 @@
 import { startTimer } from "./timer.js";
-import { gameState } from "./game-state.js";
+import { gameState } from "./gameState.js";
 import { getWinner } from "./endGame.js";
 
 const countdownContainer = document.querySelector(".top-container");

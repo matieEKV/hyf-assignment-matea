@@ -1,4 +1,4 @@
-import { gameState } from "./game-state.js";
+import { gameState } from "./gameState.js";
 
 const gameBoard = document.querySelector(".game-board");
 let idCounter = 0;
