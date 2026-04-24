@@ -1,15 +1,8 @@
-import { gameBoard } from "./grid.js";
-
 const modal = document.querySelector(".options-container");
 const helpPopup = document.querySelector(".help-popup");
 
 function closeModal() {
   modal.classList.add("hidden");
-}
-
-function openModal() {
-  modal.classList.remove("hidden");
-  gameBoard.innerHTML = "";
 }
 
 document.querySelector(".help").addEventListener("click", (event) => {
@@ -23,4 +16,4 @@ document.addEventListener("click", () => {
   }
 });
 
-export { closeModal, openModal };
+export { closeModal };
