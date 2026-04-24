@@ -72,9 +72,7 @@ let clickCounter = 0;
 window.addEventListener("click", isDoubleClick);
 
 function isDoubleClick() {
-  clickCounter++;
-
-  if (clickCounter === 1) {
+  if (++clickCounter === 1) {
     setTimeout(() => (clickCounter = 0), 500);
   } else {
     document.querySelector(".double-click").textContent =
