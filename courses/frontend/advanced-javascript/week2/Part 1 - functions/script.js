@@ -17,7 +17,7 @@ toBeDelayed(3, "This string has been delayed for 3 seconds");
 // the text Called after 5 seconds on the page 5 seconds after the button is clicked.
 
 document
-  .querySelector(".btn")
+  .getElementById("delay-button")
   .addEventListener("click", () =>
     toBeDelayed(5, "This string has been delayed for 5 seconds"),
   );
