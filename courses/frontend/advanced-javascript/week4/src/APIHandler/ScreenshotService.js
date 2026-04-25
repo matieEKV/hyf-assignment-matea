@@ -1,5 +1,5 @@
 import { RAPID_API_KEY, CRUD_ENDPOINT } from "../../secret.js";
-import ApiError from "../Errors/APIerror.js";
+import ApiError from "../Errors/ApiError.js";
 
 async function getScreenshot(encodedURL) {
   const inputURL = encodedURL;
