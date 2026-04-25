@@ -3,8 +3,6 @@ import { gameState } from "./gameState.js";
 const gameBoard = document.querySelector(".game-board");
 let idCounter = 0;
 function addClass(playerNumber) {
-  console.log("in add class");
-  console.log(gameState.players);
   gameBoard.classList.remove(
     "twoPlayers",
     "threePlayers",
@@ -24,11 +22,11 @@ function addClass(playerNumber) {
     default:
       gameBoard.classList.add("onePlayer");
   }
-  console.log(typeof gameState.players);
 }
 
 function createElements() {
-  while (gameState.players > 0) {
+  let playerNumber = gameState.players;
+  for (let i = 0; i < playerNumber; i++) {
     const playerBoard = document.createElement("div");
     playerBoard.classList.add("player-board", "player");
     playerBoard.id = "player" + ++idCounter;
@@ -42,7 +40,6 @@ function createElements() {
 
     gameBoard.append(playerBoard);
     playerBoard.append(whichKey, counter);
-    gameState.players--;
   }
 }
 
