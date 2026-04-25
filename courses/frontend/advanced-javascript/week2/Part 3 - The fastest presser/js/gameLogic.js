@@ -22,12 +22,10 @@ function startGame() {
   gameState.playerData.forEach((player) => {
     player.keyDisplay.textContent = `Press ${player.key.toUpperCase()}`;
   });
-  console.log(gameState);
   startTimer(gameState.time, (passedTime) => {
     document.querySelector(".countdown").textContent = passedTime;
   });
-  console.log("we are in the startGame");
-  document.addEventListener("keydown", startScore);
+  document.addEventListener("keyup", startScore);
 }
 
 function startScore(event) {
@@ -45,7 +43,6 @@ function startScore(event) {
 
 function stopScore() {
   gameState.isStarted = false;
-  // countdownContainer.classList.add("hidden");
   document.removeEventListener("keydown", startScore);
   getWinner();
 }
