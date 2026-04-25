@@ -17,15 +17,16 @@ function getWinner() {
         confetti.render();
         document.querySelector("#my-canvas").classList.remove("hidden");
         player.keyDisplay.textContent = `${player.key.toUpperCase()} WON!`;
-        player.keyDisplay.style.background = "rgb(121, 239, 121)";
-        player.playerBox.style.border = "15px solid rgb(121, 239, 121)";
-        console.log("players score", player.score, scoresArray[0]);
+        // player.keyDisplay.style.background = "rgb(121, 239, 121)";
+        // player.playerBox.style.border = "15px solid rgb(121, 239, 121)";
+        player.keyDisplay.classList.add("winner-key");
+        player.playerBox.classList.add("winner-box");
       }
     } else {
       if (player.keyDisplay) {
         player.keyDisplay.textContent = `${player.key.toUpperCase()} LOST!`;
-        player.keyDisplay.style.background = "rgb(239, 150, 150)";
-        player.playerBox.style.border = "15px solid rgb(239, 150, 150)";
+        player.keyDisplay.classList.add("loser-key");
+        player.playerBox.classList.add("loser-box");
       }
     }
   });

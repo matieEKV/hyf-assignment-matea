@@ -41,3 +41,18 @@
   text-align: center;
   padding: 1rem;
 }
+
+.winner-key {
+  background-color: var(--winner-color);
+}
+.winner-box {
+  border: 15px solid rgb(121, 239, 121);
+}
+
+.loser-key {
+  background-color: var(--loser-color);
+}
+
+.loser-box {
+  border: 15px solid rgb(239, 150, 150);
+}
