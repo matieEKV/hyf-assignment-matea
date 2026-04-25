@@ -3,6 +3,7 @@ import {
   storeScreenshot,
   deleteFromCrudCrud,
 } from "./src/APIHandler/ScreenshotService.js";
+import ApiError from "./src/Errors/APIerror.js";
 import InputValidation from "./src/Errors/InputValidation.js";
 import Button from "./src/htmlBlueprint/Button.js";
 import Container from "./src/htmlBlueprint/Container.js";
@@ -39,24 +40,35 @@ deleteBtn.render(galleryContainer.domElement);
 
 // calling API
 async function handleScreenshotOperation() {
-  const inputValue = inputEl.domElement.value.trim();
-  inputEl.domElement.value = "";
-  if (!inputValue) {
-    throw new InputValidation(
-      "Please input a valid URL! Input cannot be empty",
-      (inputEl.domElement.style.border = "2px solid red"), //change the color of input box if empty
-    );
+  try {
+    const inputValue = inputEl.domElement.value.trim();
+    inputEl.domElement.value = "";
+    if (!inputValue) {
+      throw new InputValidation(
+        "Please input a valid URL! Input cannot be empty",
+      );
+    } else {
+      const inputURL = encodeURIComponent(inputValue);
+      inputEl.domElement.classList.remove("invalidInput");
+      submitButton.domElement.innerText = "LOADING..."; //show loading while taking the screenshot
+
+      const imageUrl = await getScreenshot(inputURL);
+      const crudResponse = await storeScreenshot(inputURL, imageUrl);
+      const screenshot = new Screenshot(crudResponse._id, inputValue, imageUrl);
+      const screenshotCard = new ScreenshotCard(screenshot);
+      galleryContainer.domElement.append(screenshotCard.container.domElement);
+      submitButton.domElement.innerText = "Submit";
+    }
+  } catch (error) {
+    if (error instanceof ApiError) {
+      alert(error.messageToUser());
+    } else if (error instanceof InputValidation) {
+      alert(error.messageToUser());
+      inputEl.domElement.classList.add("invalidInput"); //change the color of input box if empty
+    } else {
+      alert(error);
+    }
   }
-  const inputURL = encodeURIComponent(inputValue);
-
-  submitButton.domElement.innerText = "LOADING..."; //show loading while taking the screenshot
-
-  const imageUrl = await getScreenshot(inputURL);
-  const crudResponse = await storeScreenshot(inputURL, imageUrl);
-  const screenshot = new Screenshot(crudResponse._id, inputValue, imageUrl);
-  const screenshotCard = new ScreenshotCard(screenshot);
-  galleryContainer.domElement.append(screenshotCard.container.domElement);
-  submitButton.domElement.innerText = "Submit";
 }
 
 //listen for checkboxes being checked
