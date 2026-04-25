@@ -21,7 +21,6 @@ export default class ScreenshotCard {
     label.render(this.container.domElement);
     input.render(label.domElement);
     image.render(label.domElement);
-    console.log(this.image);
     input.setAttributes("checkbox", this.id, "card");
   }
 }
