@@ -68,3 +68,7 @@ fieldset {
   padding: 5px;
   z-index: 1000;
 }
+
+#time {
+  width: 10rem;
+}
