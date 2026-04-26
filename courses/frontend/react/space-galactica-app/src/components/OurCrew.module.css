@@ -1,9 +1,3 @@
-/* .crewContainer {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(20rem, 1fr));
-  gap: 2rem;
-} */
-
 .crewHolder {
   display: flex;
   gap: 1rem;
