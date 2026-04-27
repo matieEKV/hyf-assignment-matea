@@ -6,6 +6,14 @@
   justify-content: space-between;
 }
 
+.pagesList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 .hidden {
   display: none;
 }
@@ -16,7 +24,9 @@
   padding: var(--spacing-08) 0;
 }
 
-.footer p, .footer a, .footer li {
+.footer p,
+.footer a,
+.footer li {
   color: #000;
   font-size: medium;
   font-weight: 200;
@@ -36,6 +46,11 @@
   gap: var(--spacing-20);
 }
 
+.pages,
+.footerLinks,
+.footerDescription {
+  text-align: center;
+}
 .footerList {
   list-style-type: none;
 }
