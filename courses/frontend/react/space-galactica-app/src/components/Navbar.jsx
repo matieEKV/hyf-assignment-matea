@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { Planet } from "../icons/Planet";
 import { Badge } from "./Badge";
 import styles from "./Navbar.module.css";
