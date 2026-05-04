@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Planet } from "../icons/Planet";
 import { Badge } from "./Badge";
 import styles from "./Navbar.module.css";
+import { NavItem } from "./NavItem";
 
 const navbarItems = [
   {
@@ -38,18 +39,14 @@ export const Navbar = () => {
         <div className={styles.navbarBG} />
         <ul className={styles.navbarList}>
           {navbarItems.map((item) => (
-            <li
-              key={item.id}
+            <NavItem
+              id={item.id}
+              title={item.title}
+              link={item.link}
               className={classNames(styles.navbarLinks, {
                 [styles.isLinkActive]: item.link === currentPath,
               })}
-            >
-              {" "}
-              <Link to={item.link}>
-                <b>{item.id} </b>
-                {item.title}
-              </Link>
-            </li>
+            />
           ))}
           {/* 🧑🏽‍🚀 Task - Week 3 */}
           {/* Replace repeating content by using .map() and the previously created NavItem component. */}
