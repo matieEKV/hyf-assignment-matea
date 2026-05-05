@@ -16,9 +16,6 @@ export const Footer = () => {
         </p>
         <p>&copy; 2024 Galactica. All rights reserved.</p>
       </div>
-      {/* 🧑🏽‍🚀 Task - Week 2 */}
-      {/* Create a new list for the Pages. */}
-      {/* We need to use the <Link /> component here. */}
 
       <div className={styles.pages}>
         <h3>Pages</h3>
@@ -60,11 +57,6 @@ export const Footer = () => {
             title="On the streets at night"
             icon="public/socialmedia/night.jpg"
           />
-
-          {/* 🧑🏽‍🚀 Task - Week 2 */}
-          {/* Create a <SocialMediaItem /> component and replace all of the list items! */}
-          {/* SocialMediaItem should accept the following props: url, title, icon. */}
-          {/* For the icons, you can download 1-2 social media icons for testing and put it in the /public/socialmedia/ folder. */}
         </ul>
       </div>
     </footer>

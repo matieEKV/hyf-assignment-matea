@@ -39,7 +39,7 @@ export const Navbar = () => {
         <ul className={styles.navbarList}>
           {navbarItems.map((item) => (
             <NavItem
-              id={item.id}
+              key={item.id}
               title={item.title}
               link={item.link}
               className={classNames(styles.navbarLinks, {
