@@ -63,14 +63,16 @@ export const NasaCollaboration = () => {
           {/* Iterate over the roverPhoto?.photos array and display all the pictures. */}
           {roverPhoto?.length > 0 ? (
             <>
-              {roverPhoto.map((item) => (
-                <RoverPhoto
-                  key={item.data[0].nasa_id}
-                  src={item.links[0].href}
-                  date={item.data[0].date_created}
-                  roverName={item.data[0].description}
-                />
-              ))}
+              <div className={styles.roverContainer}>
+                {roverPhoto.map((item) => (
+                  <RoverPhoto
+                    key={item.data[0].nasa_id}
+                    src={item.links[0].href}
+                    date={item.data[0].date_created}
+                    roverName={item.data[0].title}
+                  />
+                ))}
+              </div>
               {/* 🧑🏽‍🚀 Task - Week 3 */}
               {/* Create a react component for the <RoverPhoto />, which should accept the following props: */}
               {/* 1. src: source of the img; */}
