@@ -9,7 +9,7 @@ export const PlanetCard = ({
 }) => {
   return (
     <div className={styles.planetCard}>
-      <img className={styles.planetThumbnail} src={thumbnail} alt="" />
+      <img className={styles.planetThumbnail} src={thumbnail} alt={name} />
       <div className={styles.planetDescription}>
         <h2>
           {name} {isSelected ? "- SELECTED" : ""}
