@@ -7,7 +7,7 @@ export const PlanetsWishlistItem = ({ name, thumbnail, onRemove }) => {
     <div className={styles.wishlistItem}>
       <img className={styles.wishlistItemThumbnail} src={thumbnail} alt="" />
       <b>{name.toUpperCase()}</b>
-      <button onClick={onRemove}>remove</button>
+      <button onClick={() => onRemove(name)}>remove</button>
     </div>
   );
 };
