@@ -22,8 +22,8 @@ export const Destinations = () => {
     setPlanetsWishlist([
       ...planetsWishlist,
       {
-        name: name,
-        thumbnail: thumbnail,
+        name,
+        thumbnail,
       },
     ]);
   };
