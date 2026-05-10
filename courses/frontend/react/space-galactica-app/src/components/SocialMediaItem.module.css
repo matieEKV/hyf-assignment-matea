@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+}
+
+.socialList {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  place-items: center;
+}
+
+.socialIcon {
+  max-height: 2rem;
+  max-width: 2rem;
+  object-fit: contain;
+}

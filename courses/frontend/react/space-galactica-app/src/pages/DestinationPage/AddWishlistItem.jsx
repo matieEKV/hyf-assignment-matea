@@ -1,20 +1,18 @@
-import { useState } from 'react';
-import styles from './DestinationPage.module.css';
+import { useState } from "react";
+import styles from "./DestinationPage.module.css";
 
-export const AddWishlistItem = ({
-  onAddWishlistItem,
-}) => {
-  const [thumbnail, setThumbnail] = useState('/destination/image-europa.png');
+export const AddWishlistItem = ({ onAddWishlistItem }) => {
+  const [thumbnail, setThumbnail] = useState("/destination/image-europa.png");
   // 🧑🏽‍🚀 Task - Week 3
   // Add a useState for the handling of the <input id="customWishlist" type="text" />.
   // Connect the setThumbnail to the <select>.
 
   const onAddItemPressed = () => {
     // 🧑🏽‍🚀 Task - Week 3
-    // The required functionaity here:
+    // The required functionality here:
     // - call the onAddWishlistItem function;
     // - clear the <input/> field .
-  }
+  };
 
   return (
     <div className={styles.addWishlistItem}>
@@ -22,7 +20,7 @@ export const AddWishlistItem = ({
       <label htmlFor="customWishlist">Wishlist item name</label>
       <input id="customWishlist" type="text" />
       <label htmlFor="customWishlistThumbnail">Wishlist item thumbnail</label>
-      <select id="customWishlistThumbnail" >
+      <select id="customWishlistThumbnail">
         <option value="/destination/image-europa.png">EUROPA</option>
         <option value="/destination/image-mars.png">MARS</option>
         <option value="/destination/image-moon.png">MOON</option>
