@@ -33,8 +33,6 @@ export const Destinations = () => {
             <p>You have {wishlistCount} planets in your wishlist</p>
           )}
           <AddWishlistItem onAddWishlistItem={addPlanetToWishlist} />
-          {/* 🧑🏽‍🚀 Task - Week 3 */}
-          {/* Use the AddWishlistItem component here. */}
 
           <h3>Your current wishlist</h3>
           <div className={styles.wishlistList}>
