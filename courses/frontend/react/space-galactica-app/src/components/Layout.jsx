@@ -12,7 +12,7 @@ export const RootLayout = () => {
     <div className="inter">
       <Navbar />
       <Outlet />
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };
